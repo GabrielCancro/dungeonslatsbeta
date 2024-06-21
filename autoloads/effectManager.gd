@@ -39,6 +39,10 @@ func shake_rect(node,power=2,time=.5):
 		yield(get_tree().create_timer(.025),"timeout")
 	node.rect_position = ini_pos
 
+func to_rect_scale(node,scale):
+	tween.interpolate_property(node,"rect_scale",node.rect_scale,Vector2(scale,scale),.2,Tween.TRANS_QUAD,Tween.EASE_OUT)
+	tween.start()
+
 func intro_actions(node):
 	if node.visible: return
 	node.modulate.a = 0

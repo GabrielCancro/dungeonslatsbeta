@@ -1,7 +1,9 @@
 extends Control
 
 # Called when the node enters the scene tree for the first time.
-func _ready(): pass
+func _ready(): 
+	EffectManager._initialize_effector(self)
+	$CanvasLayerUI/BtnRoll.connect("button_down",self,"on_click_roll")
 #	SlatsManager._init_slat_manager(self)
 #	PlayerManager._initialize_player_manager(self)
 #	EffectManager._initialize_effector(self)
@@ -21,6 +23,10 @@ func _ready(): pass
 #		dnode.position = pos*room_size
 #		dnode.set_data(door_data)
 #		$Map.add_child(dnode)
+
+func on_click_roll():
+	for p in PlayerManager.players:
+		p.node_ref.create_slats()
 
 #func _process(delta):
 #	if Input.is_action_pressed("ui_up"): $Camera2D.position.y -= vel

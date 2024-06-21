@@ -18,6 +18,11 @@ config/icon="res://icon.png"
 
 PlayerManager="*res://autoloads/playerManager.gd"
 Utils="*res://autoloads/utils.gd"
+EffectManager="*res://autoloads/effectManager.gd"
+Lang="*res://autoloads/lang.gd"
+DefianceManager="*res://autoloads/defianceManager.gd"
+SlatsManager="*res://autoloads/slatsManager.gd"
+AbilityManager="*res://autoloads/abilityManager.gd"
 
 [display]
 

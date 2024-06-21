@@ -1,6 +1,9 @@
 extends Node
 
+var current_player_node
 var players = []
+
+signal on_select_player(player_data)
 
 func _ready():
 	init_players_data(3)
@@ -15,11 +18,20 @@ func init_players_data(amount):
 			"hp":6,"hpm":6,
 			"items":[],
 			"abilities":[],
-			"slats":{"SW":randi()%5, "GR":randi()%5, "EY":randi()%5, "BT":randi()%5, "SC":randi()%5},
+			"slats":{"SW":0, "GR":0, "EY":0, "BT":0, "SC":0, "SH":0},
+			"node_ref": null
 		})
-		#ItemManager.add_ability_to_player("berserk",i)
-		#players[i].token_ref.set_data(players[i])
-		#GAME.get_node("Map").add_child(players[i].token_ref)
+		for j in rand_range(8,12): 
+			var s = SlatsManager.SLAT_TYPES[ randi()%SlatsManager.SLAT_TYPES.size() ]
+			players[i].slats[s] += 1
+		AbilityManager.add_ability_to_player("direct_attack",i)
+
+func select_player(index):
+	var pdata = PlayerManager.players[index]
+	if current_player_node: current_player_node._internal_select(false)
+	current_player_node = pdata.node_ref
+	current_player_node._internal_select(true)
+	emit_signal("on_select_player",pdata)
 
 #func get_player_data(index = current_player_index):
 #	return players[index]

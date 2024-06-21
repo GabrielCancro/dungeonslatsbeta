@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/Game.gd" type="Script" id=1]
-[ext_resource path="res://assets/room/empty_room.png" type="Texture" id=2]
+[ext_resource path="res://nodes/Room.tscn" type="PackedScene" id=2]
 [ext_resource path="res://shaders/cellular3d.tres" type="Shader" id=3]
 [ext_resource path="res://nodes/player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/AbyssinicaSIL-Regular.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://nodes/ActionPanel.tscn" type="PackedScene" id=6]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 3 )
@@ -39,40 +40,65 @@ margin_right = 400.0
 margin_bottom = 225.0
 color = Color( 0.0862745, 0.0862745, 0.0862745, 1 )
 
-[node name="Room" type="TextureRect" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -367.0
-margin_top = -255.0
-margin_right = 367.0
-margin_bottom = 255.0
-texture = ExtResource( 2 )
-expand = true
+[node name="Room" parent="." instance=ExtResource( 2 )]
 
-[node name="Player" parent="." instance=ExtResource( 4 )]
+[node name="Player1" parent="." instance=ExtResource( 4 )]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -153.0
-margin_top = 118.0
-margin_right = -153.0
-margin_bottom = 118.0
+margin_left = -133.0
+margin_top = 119.0
+margin_right = -133.0
+margin_bottom = 119.0
+
+[node name="Player2" parent="." instance=ExtResource( 4 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -2.0
+margin_top = 119.0
+margin_right = -2.0
+margin_bottom = 119.0
+index = 1
+
+[node name="Player3" parent="." instance=ExtResource( 4 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 129.0
+margin_top = 119.0
+margin_right = 129.0
+margin_bottom = 119.0
+index = 2
 
 [node name="CanvasLayerUI" type="CanvasLayer" parent="."]
 
 [node name="BtnEndTurn" type="Button" parent="CanvasLayerUI"]
-margin_right = 172.0
-margin_bottom = 53.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 180.0
+margin_bottom = 61.0
 text = "END TURN"
+
+[node name="BtnRoll" type="Button" parent="CanvasLayerUI"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -106.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = 62.0
+text = "ROLL"
 
 [node name="DamageColor" type="ColorRect" parent="CanvasLayerUI"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0.662745, 0, 0, 1 )
+
+[node name="ActionPanel" parent="CanvasLayerUI" instance=ExtResource( 6 )]
 
 [node name="HintPanel" type="ColorRect" parent="CanvasLayerUI"]
 visible = false
