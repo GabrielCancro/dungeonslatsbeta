@@ -31,6 +31,21 @@ func order_slats():
 		snode.goto_pos(Vector2(cos(i*dp+rnd)*50,sin(i*dp+rnd)*50))
 		i+=1
 
+func consume_slats(req):
+	var valid_slats = {"SW":0, "GR":0, "EY":0, "BT":0, "SC":0, "SH":0}
+	for snode in $slats.get_children(): if snode.isValid: valid_slats[snode.type] += 1
+	for key in req.keys(): if req[key]>valid_slats[key]: return false
+	#CONSUME
+	for key in req.keys(): for i in range(req[key]): consume_one_slat(key)
+	return true
+
+func consume_one_slat(slat_type):
+	for snode in $slats.get_children(): 
+		if ! snode.isValid: continue
+		if snode.type != slat_type: continue
+		snode.set_valid(false)
+		break
+
 func _internal_select(val):
 	if val:
 		$bg.modulate = Color(.7,.7,.3,1)

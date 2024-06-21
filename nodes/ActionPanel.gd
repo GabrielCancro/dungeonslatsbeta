@@ -8,6 +8,7 @@ func _ready():
 	PlayerManager.connect("on_select_player",self,"update_player_data")
 
 func update_player_data(pdata):
+	AbilityManager.select_ability(null)
 	if !pdata: 
 		visible = false
 		return

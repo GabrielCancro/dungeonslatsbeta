@@ -33,6 +33,9 @@ func select_player(index):
 	current_player_node._internal_select(true)
 	emit_signal("on_select_player",pdata)
 
+func get_current_player_data():
+	if !current_player_node: return null
+	return current_player_node.player_data
 #func get_player_data(index = current_player_index):
 #	return players[index]
 #

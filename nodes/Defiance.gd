@@ -6,10 +6,12 @@ func _ready(): pass
 
 func set_data(_data):
 	defiance_data = _data
+	defiance_data.node_ref = self
 	$Sprite.texture = load("res://assets/defiances/df_"+defiance_data["code"]+".png")
 	EffectManager.add_hint($TargetButton,"one_defiance")
-	$TargetButton.connect("button_down",self,"on_click_target")
-	
+	$TargetButton.connect("button_down",AbilityManager,"on_click_target",[defiance_data])
+	$TargetButton.visible = false
+	AbilityManager.connect("on_select_ability",self,"on_select_ability")
 	if defiance_data.type != "enemy": $atk.visible = false
 	else: $atk/Label.text = str(defiance_data.damage)
 	$hp/Label.text = str(defiance_data.dif)
@@ -27,13 +29,16 @@ func on_click_target():
 #			#$Action/Req.get_child(index).modulate = SlatsManager.get_color(type)
 #			$Action/Req.get_child(index).visible = true
 #			index+=1
-#
-#func reduce_defiance_level(amount=1):
-#	defiance_data["action_amount"] -= amount
-#	update_labels()
-#	yield(get_tree().create_timer(.3),"timeout")
-#	if defiance_data["action_amount"] <= 0: DefianceManager.on_resolve_defiance(defiance_data)
-#
+
+func on_select_ability(adata):
+	$TargetButton.visible = adata && adata.target.has(defiance_data.type)
+	
+func reduce_defiance(amount=1):
+	defiance_data["dif"] -= amount
+	$hp/Label.text = str(defiance_data.dif)
+	yield(get_tree().create_timer(.3),"timeout")
+	if defiance_data["dif"] <= 0: DefianceManager.call("on_resolve_defiance_"+defiance_data.type, defiance_data)
+
 #func update_labels():
 #	$Action/Label.text = defiance_data["action_name"]
 #	$Lb_danger.visible = "damage" in defiance_data

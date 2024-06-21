@@ -43,7 +43,8 @@ func get_random_defiance():
 #	yield(get_tree().create_timer(.2),"timeout")
 #	emit_signal("end_defiance_effect")
 #
-#func on_resolve_defiance(defiance_data):
+func on_resolve_defiance_enemy(defiance_data):
+	EffectManager.destroy_node_with_effect(defiance_data.node_ref)
 #	var metod_name = "resolve_"+defiance_data.type
 #	print("try call ",metod_name)
 #	if has_method(metod_name):
