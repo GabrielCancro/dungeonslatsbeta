@@ -3,7 +3,8 @@ extends Node
 var current_ability_node
 signal on_select_ability(adata)
 var ABILITIES = {
-	"direct_attack":{"ico":3,"max_uses":3,"target":["enemy"]}
+	"direct_attack":{"ico":0,"target":["enemy"]},
+	"unlock":{"ico":1,"target":["trap","chest"]}
 }
 
 func get_ability(code_ab):
@@ -33,11 +34,17 @@ func on_click_target(defiance_data):
 		call(method_name, PlayerManager.get_current_player_data(), current_ability_node.ab_data, defiance_data)
 
 func ac_direct_attack_enemy(pdata, adata, ddata):
-	print("ac_direct_attack_enemy")
 	if(PlayerManager.get_current_player_data().node_ref.consume_slats({"SW":1})):
 		ddata.node_ref.reduce_defiance(1)
 		EffectManager.shake(ddata.node_ref)
-	
+
+func ac_unlock_trap(pdata, adata, ddata):
+	if(PlayerManager.get_current_player_data().node_ref.consume_slats({"GR":1})):
+		ddata.node_ref.reduce_defiance(1)
+		EffectManager.shake(ddata.node_ref)
+
+func ac_unlock_chest(pdata, adata, ddata): ac_unlock_trap(pdata, adata, ddata)
+
 #func on_click_ability(ab_data):
 #	print("USE ABILITY "+ab_data.name)
 #	var method_name = "on_use_"+ab_data.name

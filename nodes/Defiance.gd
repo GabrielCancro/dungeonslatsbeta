@@ -37,7 +37,10 @@ func reduce_defiance(amount=1):
 	defiance_data["dif"] -= amount
 	$hp/Label.text = str(defiance_data.dif)
 	yield(get_tree().create_timer(.3),"timeout")
-	if defiance_data["dif"] <= 0: DefianceManager.call("on_resolve_defiance_"+defiance_data.type, defiance_data)
+	if defiance_data["dif"] <= 0: 
+		if DefianceManager.has_method("on_resolve_defiance_"+defiance_data.type):
+			DefianceManager.call("on_resolve_defiance_"+defiance_data.type, defiance_data)
+		else: EffectManager.destroy_node_with_effect(self)
 
 #func update_labels():
 #	$Action/Label.text = defiance_data["action_name"]

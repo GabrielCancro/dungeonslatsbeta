@@ -25,6 +25,7 @@ func init_players_data(amount):
 			var s = SlatsManager.SLAT_TYPES[ randi()%SlatsManager.SLAT_TYPES.size() ]
 			players[i].slats[s] += 1
 		AbilityManager.add_ability_to_player("direct_attack",i)
+		AbilityManager.add_ability_to_player("unlock",i)
 
 func select_player(index):
 	var pdata = PlayerManager.players[index]
