@@ -23,6 +23,7 @@ func init_players_data(amount):
 		})
 		AbilityManager.add_ability_to_player("direct_attack",i)
 		AbilityManager.add_ability_to_player("unlock",i)
+		AbilityManager.add_ability_to_player("berserk",i)
 	players[0].slats.SW += 2
 	players[0].hp += 3
 	players[0].hpm += 3

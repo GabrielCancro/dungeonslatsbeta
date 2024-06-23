@@ -6,6 +6,7 @@ var texts = {
 	"ab_desc_direct_attack_es": "Ataque Directo: Consume 2xESPADA para dañar 1xVIDA a un enemigo.",
 	"ab_desc_power_attack_es": "Ataque Poderoso: Consume 3xESPADA para dañar 2xVIDA a un enemigo.",
 	"ab_desc_unlock_es": "Destrabar Mecanismo: Consume 2xMANO para resolver 1xENGRANAJE de un mecanismo.",
+	"ab_desc_berserk_es": "Berserker: Consume 1xVIDA para relanzar las ESPADAS INACTIVAS que tengas.",
 	
 	"slat_SW_es": "ESPADA: Estos slats te permitirán superar desafios de combate y fuerza bruta.",
 	"slat_GR_es": "MECANISMO: Estos slats te permitirán superar desafios mecanicos como abrir cerraduras y desactivar trampas.",

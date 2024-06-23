@@ -6,6 +6,7 @@ var ABILITIES = {
 	"direct_attack":{"ico":0,"target":["enemy"]},
 	"unlock":{"ico":1,"target":["trap","chest"]},
 	"power_attack":{"ico":2,"target":["enemy"]},
+	"berserk":{"ico":4,"target":["self"]},
 }
 
 func get_ability(code_ab):
@@ -28,6 +29,9 @@ func select_ability(adata):
 		current_ability_node = null
 		adata = null
 	emit_signal("on_select_ability",adata)
+	if adata && adata.target.has("self") && has_method("ac_self_"+adata.name): 
+		call("ac_self_"+adata.name,PlayerManager.get_current_player_data(),adata)
+		select_ability(adata)
 
 func on_click_target(defiance_data):
 	var method_name = "ac_"+current_ability_node.ab_data.name+"_"+defiance_data.type
@@ -49,7 +53,13 @@ func ac_unlock_trap(pdata, adata, ddata):
 		ddata.node_ref.reduce_defiance(1)
 		EffectManager.shake(ddata.node_ref)
 
-func ac_unlock_chest(pdata, adata, ddata): ac_unlock_trap(pdata, adata, ddata)
+func ac_unlock_chest(pdata, adata, ddata): 
+	ac_unlock_trap(pdata, adata, ddata)
+
+func ac_self_berserk(pdata, adata):
+	if pdata.hp>1:
+		pdata.node_ref.damage(1)
+		pdata.node_ref.reroll_slats("SW")
 
 #func on_click_ability(ab_data):
 #	print("USE ABILITY "+ab_data.name)

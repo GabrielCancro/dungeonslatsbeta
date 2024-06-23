@@ -57,6 +57,13 @@ func consume_one_slat(slat_type):
 		snode.set_valid(false)
 		break
 
+func reroll_slats(stype):
+	for snode in $slats.get_children(): 
+		if snode.type != stype: continue
+		if snode.isValid: continue
+		snode.roll()
+		EffectManager.appear(snode)
+
 func _internal_select(val):
 	if val:
 		$bg.modulate = Color(.7,.7,.3,1)

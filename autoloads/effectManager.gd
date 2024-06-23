@@ -76,6 +76,11 @@ func destroy_node_with_effect(node):
 	node.get_parent().remove_child(node)
 	node.queue_free()
 
+func appear(node):
+	node.visible = true
+	tween.interpolate_property(node,"modulate:a",0,1,.3,Tween.TRANS_QUAD,Tween.EASE_OUT)
+	tween.start()
+
 func dissappear(node):
 	node.visible = true
 	tween.interpolate_property(node,"modulate:a",1,0,.3,Tween.TRANS_QUAD,Tween.EASE_OUT)

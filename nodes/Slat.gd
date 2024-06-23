@@ -10,6 +10,9 @@ func set_slat(_type):
 
 func _ready():
 	randomize()
+	roll()
+
+func roll():
 	set_valid( randi()%100 < 50 )
 
 func set_valid(val):
