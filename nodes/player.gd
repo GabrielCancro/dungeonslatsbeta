@@ -2,6 +2,7 @@ extends Control
 
 export var index = 0
 var player_data
+var is_dead = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -11,9 +12,19 @@ func _ready():
 	player_data = PlayerManager.players[index]
 	player_data.node_ref = self
 	$retrait.texture = load("res://assets/retraits/token_retrait"+str(index+1)+".png")
+	update_ui()
+
+func update_ui():
+	is_dead = player_data.hp<=0
+	if is_dead: modulate = Color(.5,.5,.5)
+	else: modulate = Color(1,1,1)
+	$Label.text = str(player_data.hp)+"/"+str(player_data.hpm)
+	$HpBar.value = player_data.hpm-player_data.hp
+	$HpBar.max_value = player_data.hpm
 
 func create_slats():
 	Utils.remove_all_childs($slats)
+	if is_dead: return
 	for sk in player_data.slats.keys():
 		for n in range(player_data.slats[sk]):
 			var snode = preload("res://nodes/Slat.tscn").instance()
@@ -53,4 +64,15 @@ func _internal_select(val):
 		rect_scale = Vector2(1,1)
 	else: 
 		$bg.modulate = Color(.1,.1,.1,1)
-		EffectManager.to_rect_scale(self,0.7)
+		EffectManager.to_rect_scale(self,0.85)
+
+func remove_slats():
+	for snode in $slats.get_children(): EffectManager.destroy_node_with_effect(snode)
+
+func damage(dam):
+	if is_dead: return
+	if dam>0:
+		EffectManager.shake_rect(self)
+		player_data.hp -= dam
+		if player_data.hp<0: player_data.hp = 0
+		update_ui()

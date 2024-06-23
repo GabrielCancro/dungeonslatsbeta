@@ -18,25 +18,50 @@ func init_players_data(amount):
 			"hp":6,"hpm":6,
 			"items":[],
 			"abilities":[],
-			"slats":{"SW":0, "GR":0, "EY":0, "BT":0, "SC":0, "SH":0},
+			"slats":{"SW":2, "GR":1, "EY":1, "BT":1, "SC":0, "SH":0},
 			"node_ref": null
 		})
-		for j in rand_range(8,12): 
-			var s = SlatsManager.SLAT_TYPES[ randi()%SlatsManager.SLAT_TYPES.size() ]
-			players[i].slats[s] += 1
 		AbilityManager.add_ability_to_player("direct_attack",i)
 		AbilityManager.add_ability_to_player("unlock",i)
+	players[0].slats.SW += 2
+	players[0].hp += 3
+	players[0].hpm += 3
+	AbilityManager.add_ability_to_player("power_attack",0)
+	
+	players[1].slats.EY += 1
+	players[1].slats.BT += 2
+	players[1].slats.GR += 3
+	players[1].hp += 1
+	players[1].hpm += 1
+	players[2].slats.GR += 1
+	players[2].slats.EY += 2
+	players[2].slats.SC += 4
 
 func select_player(index):
 	var pdata = PlayerManager.players[index]
+	if pdata.node_ref.is_dead: return
 	if current_player_node: current_player_node._internal_select(false)
 	current_player_node = pdata.node_ref
 	current_player_node._internal_select(true)
 	emit_signal("on_select_player",pdata)
 
+func unselect_player():
+	if current_player_node: current_player_node._internal_select(false)
+	current_player_node = null
+	emit_signal("on_select_player",null)
+
 func get_current_player_data():
 	if !current_player_node: return null
 	return current_player_node.player_data
+
+func get_random_player_data():
+	randomize()
+	for i in range(30):
+		var index = randi()%players.size()
+		if players[index].hp>0: return players[index]
+	var index = randi()%players.size()
+	return players[index]
+
 #func get_player_data(index = current_player_index):
 #	return players[index]
 #

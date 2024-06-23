@@ -3,8 +3,9 @@ extends Node
 var lang = "es"
 
 var texts = {
-	"ab_name_berserk_es": "Berserker es",
-	"ab_desc_berserk_es": "Berserker: La furia se apodera de ti y haciendote capaz de vencer a quien sea que te enfrentes. Ganas +3@SW pero pierdes -1@HP.",
+	"ab_desc_direct_attack_es": "Ataque Directo: Consume 2xESPADA para dañar 1xVIDA a un enemigo.",
+	"ab_desc_power_attack_es": "Ataque Poderoso: Consume 3xESPADA para dañar 2xVIDA a un enemigo.",
+	"ab_desc_unlock_es": "Destrabar Mecanismo: Consume 2xMANO para resolver 1xENGRANAJE de un mecanismo.",
 	
 	"slat_SW_es": "ESPADA: Estos slats te permitirán superar desafios de combate y fuerza bruta.",
 	"slat_GR_es": "MECANISMO: Estos slats te permitirán superar desafios mecanicos como abrir cerraduras y desactivar trampas.",
@@ -16,8 +17,10 @@ var texts = {
 }
 
 var images = {
-	"@SW":"[img=15]res://assets/bbimg/bb_SW.png[/img]",
-	"@HP":"[img=15]res://assets/bbimg/bb_hp.png[/img]"
+	"@SW":"[img=15]res://assets/slats/SW.png[/img]",
+	"@HP":"[img=15]res://assets/bbimg/bb_hp.png[/img]",
+	"@GR":"[img=15]res://assets/slats/GR.png[/img]",
+	"@MC":"[img=15]res://assets/bbimg/gear.png[/img]"
 }
 
 func get_text(code):

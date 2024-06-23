@@ -1,10 +1,27 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://nodes/Defiance.gd" type="Script" id=1]
 [ext_resource path="res://assets/AbyssinicaSIL-Regular.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://assets/bbimg/bb_SW.png" type="Texture" id=3]
 [ext_resource path="res://assets/defiances/df_trap1.png" type="Texture" id=4]
 [ext_resource path="res://assets/bbimg/hp.png" type="Texture" id=5]
+[ext_resource path="res://assets/circle_token_white.png" type="Texture" id=6]
+
+[sub_resource type="Animation" id=4]
+resource_name = "trg"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("TargetSprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.1, 0.6, 1.1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.815686, 0.886275, 0, 0.741176 ), Color( 0.815686, 0.886275, 0, 0.443137 ), Color( 0.815686, 0.886275, 0, 0.741176 ) ]
+}
 
 [sub_resource type="DynamicFont" id=1]
 size = 23
@@ -24,6 +41,17 @@ script = ExtResource( 1 )
 position = Vector2( 0, -20 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 4 )
+
+[node name="TargetSprite" type="Sprite" parent="."]
+modulate = Color( 0.815686, 0.886275, 0, 0.575941 )
+position = Vector2( 0, -64 )
+scale = Vector2( 0.122047, 0.122047 )
+texture = ExtResource( 6 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TargetSprite"]
+root_node = NodePath("../..")
+reset_on_save = false
+anims/trg = SubResource( 4 )
 
 [node name="Center" type="Label" parent="."]
 visible = false
@@ -88,11 +116,14 @@ valign = 1
 
 [node name="TargetButton" type="Button" parent="."]
 modulate = Color( 1, 1, 1, 0.717647 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -17.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -32.0
 margin_top = -37.0
-margin_right = 16.0
-margin_bottom = -3.0
+margin_right = 32.0
+margin_bottom = 14.0
 focus_mode = 0
 mouse_filter = 1
+flat = true

@@ -1,12 +1,12 @@
 extends Node
 
 var DEFIANCES = {
-	"goblin":{ "type":"enemy", "damage":2, "dif":4 },
-	"trap1": { "type":"trap", "damage":1, "dif":3 },
-	"chest1":{ "type":"chest", "dif":3 }
+	"goblin":{ "type":"enemy", "damage":2, "dif":3 },
+	"trap1": { "type":"trap", "damage":1, "dif":2 },
+	"chest1":{ "type":"chest", "dif":2 }
 }
 
-#signal end_defiance_effect
+signal end_defiance_effect
 
 func get_defiance(code):
 	var def = DEFIANCES[code].duplicate(true)
@@ -45,6 +45,21 @@ func get_random_defiance():
 #
 func on_resolve_defiance_enemy(defiance_data):
 	EffectManager.destroy_node_with_effect(defiance_data.node_ref)
+
+func on_turn_defiance_enemy(defiance_data):
+	yield(get_tree().create_timer(.5),"timeout")
+	var pdata = PlayerManager.get_random_player_data()
+	pdata.node_ref.damage(defiance_data.damage)
+	yield(get_tree().create_timer(.5),"timeout")
+	emit_signal("end_defiance_effect")
+
+func on_turn_defiance_trap(defiance_data):
+	yield(get_tree().create_timer(.5),"timeout")
+	for pdata in PlayerManager.players: pdata.node_ref.damage(defiance_data.damage)
+	yield(get_tree().create_timer(.7),"timeout")
+	emit_signal("end_defiance_effect")
+
+
 #	var metod_name = "resolve_"+defiance_data.type
 #	print("try call ",metod_name)
 #	if has_method(metod_name):

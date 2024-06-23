@@ -77,20 +77,11 @@ index = 2
 [node name="CanvasLayerUI" type="CanvasLayer" parent="."]
 
 [node name="BtnEndTurn" type="Button" parent="CanvasLayerUI"]
-margin_left = 8.0
-margin_top = 8.0
-margin_right = 180.0
-margin_bottom = 61.0
+margin_left = 667.0
+margin_top = 390.0
+margin_right = 790.0
+margin_bottom = 443.0
 text = "END TURN"
-
-[node name="BtnRoll" type="Button" parent="CanvasLayerUI"]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -106.0
-margin_top = 8.0
-margin_right = -8.0
-margin_bottom = 62.0
-text = "ROLL"
 
 [node name="DamageColor" type="ColorRect" parent="CanvasLayerUI"]
 visible = false

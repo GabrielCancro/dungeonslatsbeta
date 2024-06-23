@@ -4,7 +4,8 @@ var current_ability_node
 signal on_select_ability(adata)
 var ABILITIES = {
 	"direct_attack":{"ico":0,"target":["enemy"]},
-	"unlock":{"ico":1,"target":["trap","chest"]}
+	"unlock":{"ico":1,"target":["trap","chest"]},
+	"power_attack":{"ico":2,"target":["enemy"]},
 }
 
 func get_ability(code_ab):
@@ -34,12 +35,17 @@ func on_click_target(defiance_data):
 		call(method_name, PlayerManager.get_current_player_data(), current_ability_node.ab_data, defiance_data)
 
 func ac_direct_attack_enemy(pdata, adata, ddata):
-	if(PlayerManager.get_current_player_data().node_ref.consume_slats({"SW":1})):
+	if(PlayerManager.get_current_player_data().node_ref.consume_slats({"SW":2})):
 		ddata.node_ref.reduce_defiance(1)
 		EffectManager.shake(ddata.node_ref)
 
+func ac_power_attack_enemy(pdata, adata, ddata):
+	if(PlayerManager.get_current_player_data().node_ref.consume_slats({"SW":3})):
+		ddata.node_ref.reduce_defiance(2)
+		EffectManager.shake(ddata.node_ref)
+
 func ac_unlock_trap(pdata, adata, ddata):
-	if(PlayerManager.get_current_player_data().node_ref.consume_slats({"GR":1})):
+	if(PlayerManager.get_current_player_data().node_ref.consume_slats({"GR":2})):
 		ddata.node_ref.reduce_defiance(1)
 		EffectManager.shake(ddata.node_ref)
 

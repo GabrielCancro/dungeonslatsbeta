@@ -21,47 +21,47 @@ margin_bottom = 255.0
 texture = ExtResource( 1 )
 expand = true
 
-[node name="Enemies" type="Control" parent="."]
+[node name="Defiances" type="Control" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
 
-[node name="df0" type="Sprite" parent="Enemies"]
+[node name="df0" type="Sprite" parent="Defiances"]
 position = Vector2( 177, 186 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 offset = Vector2( 0, -16 )
 
-[node name="df1" type="Sprite" parent="Enemies"]
+[node name="df1" type="Sprite" parent="Defiances"]
 position = Vector2( 359, 169 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 offset = Vector2( 0, -16 )
 
-[node name="df2" type="Sprite" parent="Enemies"]
+[node name="df2" type="Sprite" parent="Defiances"]
 position = Vector2( 289, 256 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 offset = Vector2( 0, -16 )
 
-[node name="df3" type="Sprite" parent="Enemies"]
+[node name="df3" type="Sprite" parent="Defiances"]
 position = Vector2( 140, 298 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 offset = Vector2( 0, -16 )
 
-[node name="df4" type="Sprite" parent="Enemies"]
+[node name="df4" type="Sprite" parent="Defiances"]
 position = Vector2( 428, 259 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 offset = Vector2( 0, -16 )
 
-[node name="df5" type="Sprite" parent="Enemies"]
+[node name="df5" type="Sprite" parent="Defiances"]
 position = Vector2( 515, 188 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 offset = Vector2( 0, -16 )
 
-[node name="df6" type="Sprite" parent="Enemies"]
+[node name="df6" type="Sprite" parent="Defiances"]
 position = Vector2( 596, 284 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )

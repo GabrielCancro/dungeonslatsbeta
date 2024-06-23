@@ -3,12 +3,9 @@ extends Control
 # Called when the node enters the scene tree for the first time.
 func _ready(): 
 	EffectManager._initialize_effector(self)
-	$CanvasLayerUI/BtnRoll.connect("button_down",self,"on_click_roll")
-#	SlatsManager._init_slat_manager(self)
-#	PlayerManager._initialize_player_manager(self)
-#	EffectManager._initialize_effector(self)
-#	MapGenerator.generate_new_map(30,false)
-#	$CanvasLayerUI/BtnEndTurn.connect("button_down",self,"end_turn")
+	$CanvasLayerUI/BtnEndTurn.connect("button_down",self,"end_turn")
+	yield(get_tree().create_timer(1.5),"timeout")
+	for p in PlayerManager.players: p.node_ref.create_slats()
 #	for room_name in MapGenerator.rooms:
 #		var room_data = MapGenerator.rooms[room_name]
 #		var rnode = preload("res://gameObjects/Room.tscn").instance()
@@ -40,21 +37,18 @@ func on_click_roll():
 #		$Camera2D.zoom *= 1.1
 #		print("ZOOM ",$Camera2D.zoom.x)
 
-#func end_turn():
-#	var room_data = PlayerManager.get_player_room_data()
-#	for defiance_data in room_data.defiances:
-#		DefianceManager.on_end_defiance(defiance_data)
-#		yield(DefianceManager,"end_defiance_effect")
-#
-#	yield(get_tree().create_timer(.5),"timeout")
-#	room_data = null
-#	while !room_data:
-#		PlayerManager.set_next_player()
-#		PlayerManager.player_data_inc("mv",99)
-#		SlatsManager.clear_slats()
-#		room_data = PlayerManager.get_player_room_data()
-#
-#	PlayerManager.focus_camera()
+func end_turn():
+	PlayerManager.unselect_player()
+	for p in PlayerManager.players: p.node_ref.remove_slats()
+	yield(get_tree().create_timer(.5),"timeout")
+	for dnode in $Room.get_defiances():
+		if DefianceManager.has_method("on_turn_defiance_"+dnode.defiance_data.type):
+			EffectManager.zoom_yoyo(dnode)
+			DefianceManager.call("on_turn_defiance_"+dnode.defiance_data.type,dnode.defiance_data)
+			yield(DefianceManager,"end_defiance_effect")
+
+	yield(get_tree().create_timer(1.5),"timeout")
+	for p in PlayerManager.players: p.node_ref.create_slats()
 	
 #	for def in MapManager.current_room.data.tokens:
 #		if !card: continue

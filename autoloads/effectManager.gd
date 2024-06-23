@@ -87,6 +87,7 @@ var hint_current_node
 func add_hint(node,tx_code):
 	node.connect("mouse_entered",self,"on_hint_enter_area",[node,tx_code,true])
 	node.connect("mouse_exited",self,"on_hint_enter_area",[node,tx_code,false])
+	node.connect("tree_exited",self,"on_hint_enter_area",[node,tx_code,false])
 
 func on_hint_enter_area(node,code,val):
 	if val:
