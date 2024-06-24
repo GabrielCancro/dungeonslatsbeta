@@ -1,15 +1,12 @@
-X agregar los desafios de cofre, trampa y secreto
-que se generen desafios random
-añadir planilla de jugador
-que las acciones surtan efecto, el nivel de desafio baja y al llegar a cero se resuelve
+TODO
+- que se generen desafios random
+- implementar objetos
+- añadir objetos basicos (espada escudo botas pergamino y mas)
 
-añadir multipes jugadores
-añadir cambio de turno
+RESUELTOS
+- agregar los desafios de cofre, trampa y secreto
+- que las acciones surtan efecto, y los desafios se resuelvan
+- añadir planilla de jugador
+- añadir multipes jugadores
+- añadir cambio de turno
 
-añadir movimiento al clickear puertas
-añadir que recibes daño si te mueves a otra habitacion
-implementar objetos
-añadir objetos basicos (espada escudo botas pergamino y mas)
-
-añadir desafios especiales de escalera y palanca
-añadir habitaciones inexploradas
