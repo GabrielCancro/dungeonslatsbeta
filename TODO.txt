@@ -1,6 +1,7 @@
 TODO
 - que se generen desafios random
 - implementar objetos
+- efectos basicos (ataque, conjuro, ganzuas
 - añadir objetos basicos (espada escudo botas pergamino y mas)
 
 RESUELTOS
