@@ -1,6 +1,7 @@
 extends Node
 
-signal on_pick_drop_item(items_in_room_floor)
+signal on_pick_drop_item
+
 onready var items_in_room_floor = [
 	ItemManager.get_item("small_sword"),
 	ItemManager.get_item("large_sword")
@@ -18,9 +19,22 @@ func get_item(code):
 	return it
 
 func refresh_items_in_room_floor():
-	emit_signal("on_pick_drop_item",items_in_room_floor)
+	emit_signal("on_pick_drop_item")
 
-# Called when the node enters the scene tree for the first time.
+func on_click_floor_item(item_data):
+	var pdata = PlayerManager.get_current_player_data()
+	if !pdata: return
+	items_in_room_floor.erase(item_data)
+	pdata.items.append(item_data)
+	refresh_items_in_room_floor()
+
+func on_click_drop_equipped_item(item_data):
+	var pdata = PlayerManager.get_current_player_data()
+	if !pdata: return
+	pdata.items.erase(item_data)
+	items_in_room_floor.append(item_data)
+	refresh_items_in_room_floor()
+
 func _ready():
 	pass # Replace with function body.
 

@@ -6,8 +6,9 @@ var player_data
 func _ready():
 	visible = false
 	PlayerManager.connect("on_select_player",self,"update_player_data")
+	ItemManager.connect("on_pick_drop_item",self,"update_player_data")
 
-func update_player_data(pdata):
+func update_player_data(pdata=player_data):
 	AbilityManager.select_ability(null)
 	if !pdata: 
 		visible = false
@@ -21,6 +22,10 @@ func update_player_data(pdata):
 		var anode = preload("res://nodes/AbilityNode.tscn").instance()
 		anode.set_data(adata)
 		$HBoxAbilities.add_child(anode)
+	for idata in player_data.items:
+		var inode = preload("res://nodes/ItemNode.tscn").instance()
+		inode.set_data(idata,"equipped")
+		$HBoxAbilities.add_child(inode)
 
 func _input(event):
 	var just_pressed = event.is_pressed() and not event.is_echo()
