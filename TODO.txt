@@ -1,10 +1,15 @@
 TODO
 - que se generen desafios random
-- implementar objetos
-- efectos basicos (ataque, conjuro, ganzuas
-- añadir objetos basicos (espada escudo botas pergamino y mas)
+- los cofres dan un objeto random al resolverse
+- implementar acciones de objetos:
+	-se puede utilizar un objeto por turno?
+	-o hay 3 acciones por jugador y cada jugador utiliza las que quiere?
+
 
 RESUELTOS
+- añadir objetos basicos (espada escudo botas pergamino y mas)
+- efectos basicos (ataque, conjuro, ganzuas
+- implementar objetos
 - agregar los desafios de cofre, trampa y secreto
 - que las acciones surtan efecto, y los desafios se resuelvan
 - añadir planilla de jugador
