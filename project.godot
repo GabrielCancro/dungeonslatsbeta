@@ -23,6 +23,7 @@ Lang="*res://autoloads/lang.gd"
 DefianceManager="*res://autoloads/defianceManager.gd"
 SlatsManager="*res://autoloads/slatsManager.gd"
 AbilityManager="*res://autoloads/abilityManager.gd"
+ItemManager="*res://autoloads/itemManager.gd"
 
 [display]
 

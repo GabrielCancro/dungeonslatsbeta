@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/Game.gd" type="Script" id=1]
 [ext_resource path="res://nodes/Room.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://nodes/player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/AbyssinicaSIL-Regular.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://nodes/ActionPanel.tscn" type="PackedScene" id=6]
+[ext_resource path="res://nodes/ItemsInFloor.tscn" type="PackedScene" id=7]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 3 )
@@ -88,6 +89,12 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0.662745, 0, 0, 1 )
+
+[node name="ItemsInFloor" parent="CanvasLayerUI" instance=ExtResource( 7 )]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -75.0
+margin_right = -16.0
 
 [node name="ActionPanel" parent="CanvasLayerUI" instance=ExtResource( 6 )]
 
