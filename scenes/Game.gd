@@ -3,9 +3,9 @@ extends Control
 # Called when the node enters the scene tree for the first time.
 func _ready(): 
 	EffectManager._initialize_effector(self)
+	InputManager._initialize_input_manager($CanvasLayerUI/InputStopper)
 	$CanvasLayerUI/BtnEndTurn.connect("button_down",self,"end_turn")
-	yield(get_tree().create_timer(1.5),"timeout")
-	for p in PlayerManager.players: p.node_ref.create_slats()
+	DungeonManager.goto_next_room()
 #	for room_name in MapGenerator.rooms:
 #		var room_data = MapGenerator.rooms[room_name]
 #		var rnode = preload("res://gameObjects/Room.tscn").instance()
@@ -38,15 +38,17 @@ func on_click_roll():
 #		print("ZOOM ",$Camera2D.zoom.x)
 
 func end_turn():
+	InputManager.disable_input(1.0)
 	PlayerManager.unselect_player()
 	for p in PlayerManager.players: p.node_ref.remove_slats()
 	yield(get_tree().create_timer(.5),"timeout")
-	for dnode in $Room.get_defiances():
+	for dnode in $RoomContainer/Room.get_defiances():
 		if DefianceManager.has_method("on_turn_defiance_"+dnode.defiance_data.type):
+			InputManager.disable_input(1.0)
 			EffectManager.zoom_yoyo(dnode)
 			DefianceManager.call("on_turn_defiance_"+dnode.defiance_data.type,dnode.defiance_data)
 			yield(DefianceManager,"end_defiance_effect")
-
+	InputManager.disable_input(3)
 	yield(get_tree().create_timer(1.5),"timeout")
 	for p in PlayerManager.players: p.node_ref.create_slats()
 	

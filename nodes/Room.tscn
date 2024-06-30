@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://assets/room/empty_room.png" type="Texture" id=1]
 [ext_resource path="res://assets/defiances/df_goblin.png" type="Texture" id=2]
 [ext_resource path="res://nodes/Room.gd" type="Script" id=3]
+[ext_resource path="res://assets/room/DoorOnly.png" type="Texture" id=4]
 
 [node name="Room" type="Control"]
 anchor_right = 1.0
@@ -21,48 +22,77 @@ margin_bottom = 255.0
 texture = ExtResource( 1 )
 expand = true
 
+[node name="Door" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -51.5
+margin_top = -225.0
+margin_right = 51.5
+margin_bottom = -157.0
+texture = ExtResource( 4 )
+expand = true
+
+[node name="Button" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -49.0
+margin_top = -230.0
+margin_right = 51.0
+margin_bottom = -159.0
+flat = true
+
 [node name="Defiances" type="Control" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
 
 [node name="df0" type="Sprite" parent="Defiances"]
-position = Vector2( 177, 186 )
+position = Vector2( 369, 161 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 offset = Vector2( 0, -16 )
 
 [node name="df1" type="Sprite" parent="Defiances"]
-position = Vector2( 359, 169 )
+position = Vector2( 462, 248 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 offset = Vector2( 0, -16 )
 
 [node name="df2" type="Sprite" parent="Defiances"]
-position = Vector2( 289, 256 )
+position = Vector2( 285, 248 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 offset = Vector2( 0, -16 )
 
 [node name="df3" type="Sprite" parent="Defiances"]
-position = Vector2( 140, 298 )
+position = Vector2( 535, 154 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 offset = Vector2( 0, -16 )
 
 [node name="df4" type="Sprite" parent="Defiances"]
-position = Vector2( 428, 259 )
+position = Vector2( 649, 171 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 offset = Vector2( 0, -16 )
 
 [node name="df5" type="Sprite" parent="Defiances"]
-position = Vector2( 515, 188 )
+position = Vector2( 190, 169 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 offset = Vector2( 0, -16 )
 
 [node name="df6" type="Sprite" parent="Defiances"]
-position = Vector2( 596, 284 )
+position = Vector2( 600, 256 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
+offset = Vector2( 0, -16 )
+
+[node name="df7" type="Sprite" parent="Defiances"]
+position = Vector2( 154, 281 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 offset = Vector2( 0, -16 )

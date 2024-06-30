@@ -33,6 +33,7 @@ func create_slats():
 	order_slats()
 
 func order_slats():
+	InputManager.disable_input(1.5)
 	var i = 0
 	var dp = (360-90)*PI/180/$slats.get_child_count()
 	randomize()

@@ -1,21 +1,38 @@
 extends Node
 
-var DEFIANCES = {
-	"goblin":{ "type":"enemy", "damage":2, "dif":3 },
+var DEFIANCES_ENEMY = {
+	"goblin":{ "type":"enemy", "damage":1, "dif":2 },
+	"skeleton":{ "type":"enemy", "damage":1, "dif":3 },
+	"spider":{ "type":"enemy", "damage":2, "dif":2 },
+}
+
+var DEFIANCES_TRAP = {
 	"trap1": { "type":"trap", "damage":1, "dif":2 },
-	"chest1":{ "type":"chest", "dif":2 }
+}
+
+var DEFIANCES_CHEST = {
+	"chest1":{ "type":"chest", "dif":2 },
 }
 
 signal end_defiance_effect
+signal destroyed_defiance
 
 func get_defiance(code):
-	var def = DEFIANCES[code].duplicate(true)
+	var def
+	if code in DEFIANCES_ENEMY: def = DEFIANCES_ENEMY[code].duplicate(true)
+	if code in DEFIANCES_TRAP: def = DEFIANCES_TRAP[code].duplicate(true)
+	if code in DEFIANCES_CHEST: def = DEFIANCES_CHEST[code].duplicate(true)
 	def["code"] = code
 	def["node_ref"] = null
 	return def
 
-func get_random_defiance():
+func get_random_defiance(types=null):
 	randomize()
+	var DEFIANCES = {}
+	"asdasd"
+	if !types or types.find("enemy")!=-1: DEFIANCES.merge(DEFIANCES_ENEMY)
+	if !types or types.find("trap")!=-1: DEFIANCES.merge(DEFIANCES_TRAP)
+	if !types or types.find("chest")!=-1: DEFIANCES.merge(DEFIANCES_CHEST)
 	var rk = DEFIANCES.keys()[ randi()%DEFIANCES.keys().size() ]
 	return get_defiance(rk)
 #
@@ -59,6 +76,9 @@ func on_turn_defiance_trap(defiance_data):
 	yield(get_tree().create_timer(.7),"timeout")
 	emit_signal("end_defiance_effect")
 
+func _on_destroyed_defiance():
+	yield(get_tree().create_timer(.7),"timeout")
+	emit_signal("destroyed_defiance")
 
 #	var metod_name = "resolve_"+defiance_data.type
 #	print("try call ",metod_name)

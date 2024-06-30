@@ -8,6 +8,16 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Node2D",
+"class": "Defiance",
+"language": "GDScript",
+"path": "res://nodes/Defiance.gd"
+} ]
+_global_script_class_icons={
+"Defiance": ""
+}
+
 [application]
 
 config/name="Dungeonslats"
@@ -24,6 +34,8 @@ DefianceManager="*res://autoloads/defianceManager.gd"
 SlatsManager="*res://autoloads/slatsManager.gd"
 AbilityManager="*res://autoloads/abilityManager.gd"
 ItemManager="*res://autoloads/itemManager.gd"
+DungeonManager="*res://autoloads/dungeonManager.gd"
+InputManager="*res://autoloads/inputManager.gd"
 
 [display]
 

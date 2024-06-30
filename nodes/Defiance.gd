@@ -1,4 +1,5 @@
 extends Node2D
+class_name Defiance
 
 var defiance_data
 
@@ -33,6 +34,8 @@ func reduce_defiance(amount=1):
 			DefianceManager.call("on_resolve_defiance_"+defiance_data.type, defiance_data)
 		else: EffectManager.destroy_node_with_effect(self)
 
+func _exit_tree():
+	DefianceManager._on_destroyed_defiance()
 #func update_labels():
 #	$Action/Label.text = defiance_data["action_name"]
 #	$Lb_danger.visible = "damage" in defiance_data

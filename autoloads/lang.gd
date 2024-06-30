@@ -15,6 +15,9 @@ var texts = {
 	"slat_SC_es": "PERGAMINO: Estos slats te permitirán manipular la magia para lanzar conjuros o superar trampas runicas.",
 	"slat_SH_es": "ESCUDO: Estos slats te protegen del daño que puedas recibir.",
 	"it_desc_short_sword_es": "ESPADA CORTA: Una pequeña espada bien afilada. Añade DOS ESPADA.",
+	
+	"msg_have_enemies_yet_es":"Aún hay enemigos, no puedes continuar sin destruirlos!",
+	"msg_dont_have_slats_es":"No tienes SLATS suficientes!"
 }
 
 var images = {

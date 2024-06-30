@@ -103,3 +103,7 @@ func on_hint_enter_area(node,code,val):
 	elif hint_current_node == node:
 		GAME.get_node("CanvasLayerUI/HintPanel").visible = false
 
+func show_float_text(code):
+	var node = preload("res://nodes/FloatText.tscn").instance()
+	node.set_data(Lang.get_text(code))
+	GAME.add_child(node)

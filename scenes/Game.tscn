@@ -41,7 +41,11 @@ margin_right = 400.0
 margin_bottom = 225.0
 color = Color( 0.0862745, 0.0862745, 0.0862745, 1 )
 
-[node name="Room" parent="." instance=ExtResource( 2 )]
+[node name="RoomContainer" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Room" parent="RoomContainer" instance=ExtResource( 2 )]
 
 [node name="Player1" parent="." instance=ExtResource( 4 )]
 anchor_left = 0.5
@@ -141,3 +145,48 @@ bbcode_enabled = true
 bbcode_text = "qweqwe[img=15]res://assets/slats/BT.png[/img] adasfqweqwe[img=15]res://assets/slats/BT.png[/img]qweqwe[img=15]res://assets/slatsqweqwe[img=15]res://assets/slats/BT.png[/img] adasfqweqwe[img=15]res://assets/slats/BT.png[/img]/BT.png[/img] adasfqweqwe[img=15]res://assets/slats/BT.png[/img]qweqwe[img=15]res://assets/slats/BT.png[/img] adasfqweqwe[img=15]res://assets/slats/BT.png[/img]qweqwe[img=15]res://assets/slats/BT.png[/img] ada"
 text = "qweqwe adasfqweqweqweqwe adasfqweqwe/BT.png adasfqweqweqweqwe adasfqweqweqweqwe ada"
 scroll_active = false
+
+[node name="InputStopper" type="ColorRect" parent="CanvasLayerUI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.262745, 0.262745, 0.262745, 0 )
+
+[node name="c1" type="ColorRect" parent="CanvasLayerUI/InputStopper"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -400.0
+margin_right = 400.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 15, 15 )
+color = Color( 0.282353, 0.282353, 0.282353, 1 )
+
+[node name="c2" type="ColorRect" parent="CanvasLayerUI/InputStopper"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -400.0
+margin_top = -15.0
+margin_right = 400.0
+rect_min_size = Vector2( 15, 15 )
+color = Color( 0.282353, 0.282353, 0.282353, 1 )
+
+[node name="c3" type="ColorRect" parent="CanvasLayerUI/InputStopper"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -15.0
+margin_top = -225.0
+margin_bottom = 225.0
+rect_min_size = Vector2( 15, 15 )
+color = Color( 0.282353, 0.282353, 0.282353, 1 )
+
+[node name="c4" type="ColorRect" parent="CanvasLayerUI/InputStopper"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -225.0
+margin_right = 15.0
+margin_bottom = 225.0
+rect_min_size = Vector2( 15, 15 )
+color = Color( 0.282353, 0.282353, 0.282353, 1 )
