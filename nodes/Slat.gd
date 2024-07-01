@@ -13,7 +13,8 @@ func _ready():
 	roll()
 
 func roll():
-	set_valid( randi()%100 < 50 )
+	if type == "EN": set_valid(true)
+	else: set_valid( randi()%100 < 50 )
 
 func set_valid(val):
 	isValid = val

@@ -19,7 +19,7 @@ func init_players_data(amount):
 			"mv":3,"mvm":3,
 			"items":[],
 			"abilities":[],
-			"slats":{"SW":2, "GR":1, "EY":1, "BT":1, "SC":0, "SH":0},
+			"slats":{"SW":2, "GR":1, "EY":1, "BT":1, "SC":0, "SH":0, "EN":3},
 			"node_ref": null
 		})
 		AbilityManager.add_ability_to_player("direct_attack",i)

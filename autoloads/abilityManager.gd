@@ -7,6 +7,7 @@ var ABILITIES = {
 	"unlock":{"ico":1, "target":["trap","chest"], "req":{"GR":2}},
 	"power_attack":{"ico":2, "target":["enemy"], "req":{"SW":3}},
 	"berserk":{"ico":4, "target":["self"], "req":{}},
+	"fast_attack":{"ico":4, "target":["self"], "req":{"EN":3}},
 }
 
 func get_ability(code_ab):

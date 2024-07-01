@@ -32,8 +32,8 @@ func create_slats():
 	for sk in player_data.slats.keys():
 		for n in range(player_data.slats[sk]):
 			var snode = preload("res://nodes/Slat.tscn").instance()
-			$slats.add_child(snode)
 			snode.set_slat(sk)
+			$slats.add_child(snode)
 	order_slats()
 
 func order_slats():
