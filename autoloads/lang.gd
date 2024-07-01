@@ -17,7 +17,8 @@ var texts = {
 	"it_desc_short_sword_es": "ESPADA CORTA: Una pequeña espada bien afilada. Añade DOS ESPADA.",
 	
 	"msg_have_enemies_yet_es":"Aún hay enemigos, no puedes continuar sin destruirlos!",
-	"msg_dont_have_slats_es":"No tienes SLATS suficientes!"
+	"msg_dont_have_slats_es":"No tienes SLATS suficientes!",
+	"msg_dont_have_mov_es":"Ya agotaste todas tus ACCIONES!",
 }
 
 var images = {

@@ -51,6 +51,7 @@ func end_turn():
 	InputManager.disable_input(3)
 	yield(get_tree().create_timer(1.5),"timeout")
 	for p in PlayerManager.players: p.node_ref.create_slats()
+	PlayerManager.restore_all_mv()
 	
 #	for def in MapManager.current_room.data.tokens:
 #		if !card: continue

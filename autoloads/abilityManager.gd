@@ -30,13 +30,20 @@ func select_ability(adata):
 		adata = null
 	emit_signal("on_select_ability",adata)
 	if adata && adata.target.has("self") && has_method("ac_self_"+adata.name): 
-		call("ac_self_"+adata.name,PlayerManager.get_current_player_data(),adata)
-		select_ability(adata)
+		if PlayerManager.get_current_player_data().mv<=0:
+			EffectManager.show_float_text("msg_dont_have_mov")
+		else:
+			call("ac_self_"+adata.name,PlayerManager.get_current_player_data(),adata)
+			PlayerManager.dec_current_mv()
+			select_ability(adata)
 
 func on_click_target(defiance_data):
 	var method_name = "ac_"+current_ability_node.ab_data.name+"_"+defiance_data.type
 	if has_method(method_name): 
-		if(PlayerManager.get_current_player_data().node_ref.consume_slats(current_ability_node.ab_data.req)):
+		if PlayerManager.get_current_player_data().mv<=0:
+			EffectManager.show_float_text("msg_dont_have_mov")
+		elif(PlayerManager.get_current_player_data().node_ref.consume_slats(current_ability_node.ab_data.req)):
+			PlayerManager.dec_current_mv()
 			InputManager.disable_input(1)
 			call(method_name, PlayerManager.get_current_player_data(), current_ability_node.ab_data, defiance_data)
 		else:

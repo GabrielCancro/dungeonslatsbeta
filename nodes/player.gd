@@ -21,6 +21,10 @@ func update_ui():
 	$Label.text = str(player_data.hp)+"/"+str(player_data.hpm)
 	$HpBar.value = player_data.hpm-player_data.hp
 	$HpBar.max_value = player_data.hpm
+	for n in $HBoxMov.get_children():
+		n.visible = ( n.get_index()<=player_data.mvm-1 )
+		if player_data.mv>n.get_index(): n.modulate = Color(.9,.9,.1,1)
+		else:  n.modulate = Color(.3,.3,.2,1)
 
 func create_slats():
 	Utils.remove_all_childs($slats)
