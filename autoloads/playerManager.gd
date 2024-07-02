@@ -16,7 +16,6 @@ func init_players_data(amount):
 			"index":i,
 			"retrait":i+1,
 			"hp":6,"hpm":6,
-			"mv":3,"mvm":3,
 			"items":[],
 			"abilities":[],
 			"slats":{"SW":2, "GR":1, "EY":1, "BT":1, "SC":0, "SH":0, "EN":3},
@@ -64,17 +63,7 @@ func get_random_player_data():
 	var index = randi()%players.size()
 	return players[index]
 
-func dec_current_mv():
-	if current_player_node.player_data.mv>0:
-		current_player_node.player_data.mv -= 1
-		current_player_node.update_ui()
-		return true
-	else: return false
 
-func restore_all_mv():
-	for p in players: 
-		p.mv = p.mvm
-		p.node_ref.update_ui()
 #func get_player_data(index = current_player_index):
 #	return players[index]
 #

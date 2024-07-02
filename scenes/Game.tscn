@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scenes/Game.gd" type="Script" id=1]
 [ext_resource path="res://nodes/Room.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://assets/AbyssinicaSIL-Regular.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://nodes/ActionPanel.tscn" type="PackedScene" id=6]
 [ext_resource path="res://nodes/ItemsInFloor.tscn" type="PackedScene" id=7]
+[ext_resource path="res://nodes/HintPanel.tscn" type="PackedScene" id=8]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 3 )
@@ -106,7 +107,9 @@ margin_bottom = 138.0
 
 [node name="ActionPanel" parent="CanvasLayerUI" instance=ExtResource( 6 )]
 
-[node name="HintPanel" type="ColorRect" parent="CanvasLayerUI"]
+[node name="HintPanel" parent="CanvasLayerUI" instance=ExtResource( 8 )]
+
+[node name="HintReq" type="ColorRect" parent="CanvasLayerUI"]
 visible = false
 anchor_left = 0.5
 anchor_right = 0.5
@@ -116,7 +119,7 @@ margin_right = 258.0
 margin_bottom = 63.0
 color = Color( 0.0585938, 0.0585938, 0.0585938, 0.862745 )
 
-[node name="Label" type="Label" parent="CanvasLayerUI/HintPanel"]
+[node name="Label" type="Label" parent="CanvasLayerUI/HintReq"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -129,7 +132,7 @@ align = 1
 valign = 1
 autowrap = true
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayerUI/HintPanel"]
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayerUI/HintReq"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5

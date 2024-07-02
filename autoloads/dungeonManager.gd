@@ -30,4 +30,3 @@ func goto_next_room():
 		CONTAINER.add_child(NEW_ROOM)
 		yield(get_tree().create_timer(1),"timeout")
 	for p in PlayerManager.players: p.node_ref.create_slats()
-	PlayerManager.restore_all_mv()

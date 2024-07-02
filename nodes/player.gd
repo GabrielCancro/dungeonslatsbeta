@@ -21,10 +21,10 @@ func update_ui():
 	$Label.text = str(player_data.hp)+"/"+str(player_data.hpm)
 	$HpBar.value = player_data.hpm-player_data.hp
 	$HpBar.max_value = player_data.hpm
-	for n in $HBoxMov.get_children():
-		n.visible = ( n.get_index()<=player_data.mvm-1 )
-		if player_data.mv>n.get_index(): n.modulate = Color(.9,.9,.1,1)
-		else:  n.modulate = Color(.3,.3,.2,1)
+#	for n in $HBoxMov.get_children():
+#		n.visible = ( n.get_index()<=player_data.mvm-1 )
+#		if player_data.mv>n.get_index(): n.modulate = Color(.9,.9,.1,1)
+#		else:  n.modulate = Color(.3,.3,.2,1)
 
 func create_slats():
 	Utils.remove_all_childs($slats)
@@ -39,16 +39,21 @@ func create_slats():
 func order_slats():
 	InputManager.disable_input(1.5)
 	var i = 0
+	var e = 0
 	var dp = (360-90)*PI/180/$slats.get_child_count()
 	randomize()
-	var rnd = (90+60)*PI/180#randf()*2*PI
+	var start_angle = (90+60)*PI/180#randf()*2*PI
 	for snode in $slats.get_children():
 		yield(get_tree().create_timer(.05),"timeout")
-		snode.goto_pos(Vector2(cos(i*dp+rnd)*50,sin(i*dp+rnd)*50))
+#		if snode.type!="EN":
+		snode.goto_pos(Vector2(cos(i*dp+start_angle)*50,sin(i*dp+start_angle)*50))
 		i+=1
+#		else:
+#			snode.goto_pos(Vector2(e*30-50,30))
+#			e+=1
 
 func consume_slats(req):
-	var valid_slats = {"SW":0, "GR":0, "EY":0, "BT":0, "SC":0, "SH":0}
+	var valid_slats = {"SW":0, "GR":0, "EY":0, "BT":0, "SC":0, "SH":0, "EN":0}
 	for snode in $slats.get_children(): if snode.isValid: valid_slats[snode.type] += 1
 	for key in req.keys(): if req[key]>valid_slats[key]: return false
 	#CONSUME
@@ -60,6 +65,7 @@ func consume_one_slat(slat_type):
 		if ! snode.isValid: continue
 		if snode.type != slat_type: continue
 		snode.set_valid(false)
+		EffectManager.flip_token_fx(snode,true)
 		break
 
 func reroll_slats(stype):

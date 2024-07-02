@@ -89,21 +89,25 @@ func dissappear(node):
 	node.visible = false
 
 var hint_current_node
-func add_hint(node,tx_code):
-	node.connect("mouse_entered",self,"on_hint_enter_area",[node,tx_code,true])
-	node.connect("mouse_exited",self,"on_hint_enter_area",[node,tx_code,false])
-	node.connect("tree_exited",self,"on_hint_enter_area",[node,tx_code,false])
+func add_hint(node,tx_code,req=null):
+	node.connect("mouse_entered",self,"on_hint_enter_area",[node,tx_code,true,req])
+	node.connect("mouse_exited",self,"on_hint_enter_area",[node,tx_code,false,req])
+	node.connect("tree_exited",self,"on_hint_enter_area",[node,tx_code,false,req])
 
-func on_hint_enter_area(node,code,val):
-	if val:
+func on_hint_enter_area(node,code,val,req=null):
+	if val: 
 		hint_current_node = node
-		GAME.get_node("CanvasLayerUI/HintPanel/Label").text = Lang.get_text(code)
-		GAME.get_node("CanvasLayerUI/HintPanel/RichTextLabel").bbcode_text = Lang.get_text(code)
-		GAME.get_node("CanvasLayerUI/HintPanel").visible = true
+		GAME.get_node("CanvasLayerUI/HintPanel").show_hint(code,req)
 	elif hint_current_node == node:
-		GAME.get_node("CanvasLayerUI/HintPanel").visible = false
+		hint_current_node = node
+		GAME.get_node("CanvasLayerUI/HintPanel").hide_hint()
 
 func show_float_text(code):
 	var node = preload("res://nodes/FloatText.tscn").instance()
 	node.set_data(Lang.get_text(code))
 	GAME.add_child(node)
+
+func flip_token_fx(node,is_rect=false):
+	if is_rect: tween.interpolate_property(node,"rect_scale:x",.1,1,.5,Tween.TRANS_QUAD,Tween.EASE_OUT)
+	else: tween.interpolate_property(node,"scale:x",.1,1,.5,Tween.TRANS_QUAD,Tween.EASE_OUT)
+	tween.start()
