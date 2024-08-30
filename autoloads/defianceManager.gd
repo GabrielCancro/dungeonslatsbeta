@@ -64,10 +64,12 @@ func on_resolve_defiance_enemy(defiance_data):
 	EffectManager.destroy_node_with_effect(defiance_data.node_ref)
 
 func on_turn_defiance_enemy(defiance_data):
-	yield(get_tree().create_timer(.5),"timeout")
+	yield(get_tree().create_timer(.3),"timeout")
 	var pdata = PlayerManager.get_random_player_data()
+	EffectManager.goto_and_back(defiance_data.node_ref,pdata.node_ref.rect_position+Vector2(0,-60))
+	yield(get_tree().create_timer(.4),"timeout")
 	pdata.node_ref.damage(defiance_data.damage)
-	yield(get_tree().create_timer(.5),"timeout")
+	yield(get_tree().create_timer(.7),"timeout")
 	emit_signal("end_defiance_effect")
 
 func on_turn_defiance_trap(defiance_data):

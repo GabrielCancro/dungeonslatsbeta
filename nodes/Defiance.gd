@@ -8,8 +8,7 @@ func _ready(): pass
 func set_data(_data):
 	defiance_data = _data
 	defiance_data.node_ref = self
-	$TargetSprite.visible = false
-	$TargetSprite/AnimationPlayer.play("trg")
+	$Sprite.material = null
 	$Sprite.texture = load("res://assets/defiances/df_"+defiance_data["code"]+".png")
 	EffectManager.add_hint($TargetButton,"one_defiance")
 	AbilityManager.connect("on_select_ability",self,"on_select_ability")
@@ -20,10 +19,11 @@ func set_data(_data):
 
 func on_select_ability(adata):
 	$TargetButton.disconnect("button_down",AbilityManager,"on_click_target")
-	$TargetSprite.visible = false
 	if adata && adata.target.has(defiance_data.type): 
 		$TargetButton.connect("button_down",AbilityManager,"on_click_target",[defiance_data])
-		$TargetSprite.visible = true
+		$Sprite.material = preload("res://shaders/outline.tres")
+	else:
+		$Sprite.material = null
 
 func reduce_defiance(amount=1):
 	defiance_data["dif"] -= amount

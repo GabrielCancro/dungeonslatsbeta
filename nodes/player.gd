@@ -45,12 +45,10 @@ func order_slats():
 	var start_angle = (90+60)*PI/180#randf()*2*PI
 	for snode in $slats.get_children():
 		yield(get_tree().create_timer(.05),"timeout")
-#		if snode.type!="EN":
 		snode.goto_pos(Vector2(cos(i*dp+start_angle)*50,sin(i*dp+start_angle)*50))
 		i+=1
-#		else:
-#			snode.goto_pos(Vector2(e*30-50,30))
-#			e+=1
+	PlayerManager.emit_signal("on_change_player_slats")
+
 
 func consume_slats(req):
 	var valid_slats = {"SW":0, "GR":0, "EY":0, "BT":0, "SC":0, "SH":0, "EN":0}
@@ -58,6 +56,13 @@ func consume_slats(req):
 	for key in req.keys(): if req[key]>valid_slats[key]: return false
 	#CONSUME
 	for key in req.keys(): for i in range(req[key]): consume_one_slat(key)
+	PlayerManager.emit_signal("on_change_player_slats")
+	return true
+
+func check_slats(req):
+	var valid_slats = {"SW":0, "GR":0, "EY":0, "BT":0, "SC":0, "SH":0, "EN":0}
+	for snode in $slats.get_children(): if snode.isValid: valid_slats[snode.type] += 1
+	for key in req.keys(): if req[key]>valid_slats[key]: return false
 	return true
 
 func consume_one_slat(slat_type):
@@ -74,6 +79,7 @@ func reroll_slats(stype):
 		if snode.isValid: continue
 		snode.roll()
 		EffectManager.appear(snode)
+	PlayerManager.emit_signal("on_change_player_slats")
 
 func _internal_select(val):
 	if val:

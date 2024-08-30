@@ -6,6 +6,7 @@ func _ready():
 	InputManager._initialize_input_manager($CanvasLayerUI/InputStopper)
 	$CanvasLayerUI/BtnEndTurn.connect("button_down",self,"end_turn")
 	DungeonManager.goto_next_room()
+	$CanvasLayerUI/InputStopper/AnimationPlayer.play("idle")
 #	for room_name in MapGenerator.rooms:
 #		var room_data = MapGenerator.rooms[room_name]
 #		var rnode = preload("res://gameObjects/Room.tscn").instance()

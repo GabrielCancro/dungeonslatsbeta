@@ -4,6 +4,7 @@ var current_player_node
 var players = []
 
 signal on_select_player(player_data)
+signal on_change_player_slats()
 
 func _ready():
 	init_players_data(3)

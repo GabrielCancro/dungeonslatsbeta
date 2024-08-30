@@ -6,7 +6,7 @@ var ABILITIES = {
 	"direct_attack":{"ico":0, "target":["enemy"], "req":{"SW":2,"EN":1}},
 	"unlock":{"ico":1, "target":["trap","chest"], "req":{"GR":2,"EN":1}},
 	"power_attack":{"ico":2, "target":["enemy"], "req":{"SW":3,"EN":1}},
-	"berserk":{"ico":4, "target":["self"], "req":{"EN":2}},
+	"berserk":{"ico":4, "target":["self"], "req":{"EN":1}},
 	"fast_attack":{"ico":4, "target":["self"], "req":{"EN":1}},
 }
 
@@ -20,34 +20,34 @@ func add_ability_to_player(code_ab,index=PlayerManager.current_player_index):
 	var pdata = PlayerManager.players[index]
 	pdata.abilities.append(get_ability(code_ab))
 
-func select_ability(adata):
+func select_ability(adata): #on click ability node
 	if !is_instance_valid(current_ability_node): current_ability_node = null
 	if current_ability_node: current_ability_node._internal_select(false)
 	if adata && current_ability_node!=adata.node_ref: 
 		current_ability_node = adata.node_ref
 		current_ability_node._internal_select(true)
+		check_autoself_action(adata)
 	else: 
 		current_ability_node = null
 		adata = null
 	emit_signal("on_select_ability",adata)
-	if adata && adata.target.has("self") && has_method("ac_self_"+adata.name): 
-		if(PlayerManager.get_current_player_data().node_ref.consume_slats(current_ability_node.ab_data.req)):
-			InputManager.disable_input(1.5)
-			yield(get_tree().create_timer(.4),"timeout")
-			call("ac_self_"+adata.name,PlayerManager.get_current_player_data(),adata)
-			select_ability(adata)
-		else:
-			EffectManager.show_float_text("msg_dont_have_slats")
 
 func on_click_target(defiance_data):
 	var method_name = "ac_"+current_ability_node.ab_data.name+"_"+defiance_data.type
 	if has_method(method_name): 
-		if(PlayerManager.get_current_player_data().node_ref.consume_slats(current_ability_node.ab_data.req)):
-			InputManager.disable_input(1.5)
-			yield(get_tree().create_timer(.4),"timeout")
-			call(method_name, PlayerManager.get_current_player_data(), current_ability_node.ab_data, defiance_data)
-		else:
-			EffectManager.show_float_text("msg_dont_have_slats")
+		PlayerManager.get_current_player_data().node_ref.consume_slats(current_ability_node.ab_data.req)
+		InputManager.disable_input(1.5)
+		yield(get_tree().create_timer(.4),"timeout")
+		call(method_name, PlayerManager.get_current_player_data(), current_ability_node.ab_data, defiance_data)
+		select_ability(null)
+
+func check_autoself_action(adata):
+	if adata && adata.target.has("self") && has_method("ac_self_"+adata.name): 
+		PlayerManager.get_current_player_data().node_ref.consume_slats(current_ability_node.ab_data.req)
+		InputManager.disable_input(1.5)
+		yield(get_tree().create_timer(.4),"timeout")
+		call("ac_self_"+adata.name,PlayerManager.get_current_player_data(),adata)
+		select_ability(null)
 
 func ac_direct_attack_enemy(pdata, adata, ddata):
 		ddata.node_ref.reduce_defiance(1)

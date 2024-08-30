@@ -27,6 +27,8 @@ func goto_next_room():
 		PlayerManager.unselect_player()
 		for p in PlayerManager.players: p.node_ref.remove_slats()
 		yield(get_tree().create_timer(.5),"timeout")
+		NEW_ROOM.modulate.a = 0
+		EffectManager.appear(NEW_ROOM)
 		CONTAINER.add_child(NEW_ROOM)
 		yield(get_tree().create_timer(1),"timeout")
 	for p in PlayerManager.players: p.node_ref.create_slats()

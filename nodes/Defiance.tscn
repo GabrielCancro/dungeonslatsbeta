@@ -1,27 +1,11 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://nodes/Defiance.gd" type="Script" id=1]
 [ext_resource path="res://assets/AbyssinicaSIL-Regular.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://assets/bbimg/bb_SW.png" type="Texture" id=3]
 [ext_resource path="res://assets/defiances/df_trap1.png" type="Texture" id=4]
 [ext_resource path="res://assets/bbimg/hp.png" type="Texture" id=5]
-[ext_resource path="res://assets/circle_token_white.png" type="Texture" id=6]
-
-[sub_resource type="Animation" id=4]
-resource_name = "trg"
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("TargetSprite:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0.1, 0.6, 1.1 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 0.815686, 0.886275, 0, 0.741176 ), Color( 0.815686, 0.886275, 0, 0.443137 ), Color( 0.815686, 0.886275, 0, 0.741176 ) ]
-}
+[ext_resource path="res://shaders/outline.tres" type="Material" id=7]
 
 [sub_resource type="DynamicFont" id=1]
 size = 23
@@ -38,20 +22,10 @@ font_data = ExtResource( 2 )
 script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
+material = ExtResource( 7 )
 position = Vector2( 0, -20 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 4 )
-
-[node name="TargetSprite" type="Sprite" parent="."]
-modulate = Color( 0.815686, 0.886275, 0, 0.575941 )
-position = Vector2( 0, -64 )
-scale = Vector2( 0.122047, 0.122047 )
-texture = ExtResource( 6 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="TargetSprite"]
-root_node = NodePath("../..")
-reset_on_save = false
-anims/trg = SubResource( 4 )
 
 [node name="Center" type="Label" parent="."]
 visible = false

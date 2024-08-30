@@ -111,3 +111,9 @@ func flip_token_fx(node,is_rect=false):
 	if is_rect: tween.interpolate_property(node,"rect_scale:x",.1,1,.5,Tween.TRANS_QUAD,Tween.EASE_OUT)
 	else: tween.interpolate_property(node,"scale:x",.1,1,.5,Tween.TRANS_QUAD,Tween.EASE_OUT)
 	tween.start()
+
+func goto_and_back(node,to_pos):
+	var start_pos = node.position
+	tween.interpolate_property(node,"position",start_pos,to_pos,.3,Tween.TRANS_QUAD,Tween.EASE_OUT)
+	tween.interpolate_property(node,"position",to_pos,start_pos,.3,Tween.TRANS_QUAD,Tween.EASE_IN,.6)
+	tween.start()
