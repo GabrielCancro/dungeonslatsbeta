@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://scenes/Game.gd" type="Script" id=1]
 [ext_resource path="res://nodes/Room.tscn" type="PackedScene" id=2]
@@ -39,6 +39,14 @@ tracks/0/keys = {
 "update": 0,
 "values": [ 0.0, 360.0 ]
 }
+
+[sub_resource type="DynamicFont" id=5]
+size = 20
+outline_size = 5
+outline_color = Color( 0.113725, 0.113725, 0.113725, 1 )
+extra_spacing_top = -2
+extra_spacing_bottom = -2
+font_data = ExtResource( 5 )
 
 [node name="Game" type="Control"]
 anchor_right = 1.0
@@ -225,3 +233,16 @@ margin_right = 63.0
 margin_bottom = 65.0
 rect_pivot_offset = Vector2( 25, 25 )
 texture = ExtResource( 9 )
+
+[node name="lb_level" type="Label" parent="CanvasLayerUI"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -104.0
+margin_top = 9.0
+margin_right = -7.0
+margin_bottom = 46.0
+custom_colors/font_color = Color( 0.968627, 0.509804, 0.509804, 1 )
+custom_fonts/font = SubResource( 5 )
+text = "DUNGEON
+LEVEL 1"
+align = 2
