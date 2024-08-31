@@ -8,14 +8,13 @@ onready var items_in_room_floor = [
 ]
 
 var ITEMS = {
-	"small_sword":{"ico":1,"type":"weapon", "max_uses":10},
-	"large_sword":{"ico":2,"type":"weapon", "max_uses":10},
+	"small_sword":{"ico":1,"type":"weapon", "uses":5, "req":{"EN":1} },
+	"large_sword":{"ico":2,"type":"weapon", "uses":5, "req":{"EN":1} },
 }
 
 func get_item(code):
 	var it = ITEMS[code].duplicate()
 	it["name"] = code
-	if "max_uses" in it: it["uses"] = it["max_uses"]
 	return it
 
 func refresh_items_in_room_floor():
@@ -35,10 +34,19 @@ func on_click_drop_equipped_item(item_data):
 	items_in_room_floor.append(item_data)
 	refresh_items_in_room_floor()
 
-func _ready():
-	pass # Replace with function body.
+func on_use_item(it_data):
+	if it_data && has_method("use_item_"+it_data.name): 
+		it_data.uses -= 1
+		if(it_data.uses<=0): PlayerManager.get_current_player_data().items.erase(it_data)
+		PlayerManager.get_current_player_data().node_ref.consume_slats(it_data.req)
+		InputManager.disable_input(1.5)
+		yield(get_tree().create_timer(.4),"timeout")
+		call("use_item_"+it_data.name,PlayerManager.get_current_player_data(),it_data)
 
+func use_item_small_sword(pdata,it_data):
+	pdata.node_ref.restore_one_slat("SW")
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func use_item_large_sword(pdata,it_data):
+	pdata.node_ref.restore_one_slat("SW")
+	yield(get_tree().create_timer(.3),"timeout")
+	pdata.node_ref.restore_one_slat("SW")

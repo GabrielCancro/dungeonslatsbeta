@@ -73,6 +73,15 @@ func consume_one_slat(slat_type):
 		EffectManager.flip_token_fx(snode,true)
 		break
 
+func restore_one_slat(slat_type):
+	for snode in $slats.get_children(): 
+		if snode.isValid: continue
+		if snode.type != slat_type: continue
+		snode.set_valid(true)
+		EffectManager.flip_token_fx(snode,true)
+		PlayerManager.emit_signal("on_change_player_slats")
+		break
+
 func reroll_slats(stype):
 	for snode in $slats.get_children(): 
 		if snode.type != stype: continue

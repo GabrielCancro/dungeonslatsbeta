@@ -8,6 +8,9 @@ var texts = {
 	"ab_desc_unlock_es": "Destrabar Mecanismo: Consume 2xMANO para resolver 1xENGRANAJE de un mecanismo.",
 	"ab_desc_berserk_es": "Berserker: Consume 1xVIDA para relanzar las ESPADAS INACTIVAS que tengas.",
 	
+	"it_desc_small_sword_es":"Espada Corta: Restaura 1xESPADA que este agotada.",
+	"it_desc_large_sword_es":"Espada Larga: Restaura 2xESPADA que este agotada.",
+	
 	"slat_SW_es": "ESPADA: Estos slats te permitirán superar desafios de combate y fuerza bruta.",
 	"slat_GR_es": "MECANISMO: Estos slats te permitirán superar desafios mecanicos como abrir cerraduras y desactivar trampas.",
 	"slat_EY_es": "OJO: Estos slats hacen referencia a la percepción, te permitirán superar desafios con los sentidos y encontrar cosas ocultas.",
