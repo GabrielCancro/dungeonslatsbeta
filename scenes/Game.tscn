@@ -237,12 +237,13 @@ texture = ExtResource( 9 )
 [node name="lb_level" type="Label" parent="CanvasLayerUI"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -104.0
+margin_left = -138.0
 margin_top = 9.0
-margin_right = -7.0
-margin_bottom = 46.0
+margin_right = -9.0
+margin_bottom = 66.0
 custom_colors/font_color = Color( 0.968627, 0.509804, 0.509804, 1 )
 custom_fonts/font = SubResource( 5 )
 text = "DUNGEON
-LEVEL 1"
+LEVEL 1
+SALA 1/10"
 align = 2

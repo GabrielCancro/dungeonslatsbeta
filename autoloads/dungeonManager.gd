@@ -1,6 +1,7 @@
 extends Node
 
-var dungeon_level = 0
+var dungeon_level = 1
+var room_num = 0
 
 func get_defiances_by_level():
 	print("get_defiances_by_level")
@@ -12,7 +13,10 @@ func get_defiances_by_level():
 
 func goto_next_room():
 	var is_first_creation = (dungeon_level==0)
-	dungeon_level += 1
+	room_num += 1
+	if room_num>3+dungeon_level: 
+		dungeon_level += 1
+		room_num = 1
 	print("DUNGEON LEVEL ",dungeon_level)
 	var CONTAINER = get_node("/root/Game/RoomContainer")
 	var OLD_ROOM = get_node("/root/Game/RoomContainer/Room")
