@@ -109,3 +109,11 @@ func damage(dam):
 		player_data.hp -= dam
 		if player_data.hp<0: player_data.hp = 0
 		update_ui()
+
+func heal(val):
+	if is_dead: return
+	if val>0:
+		EffectManager.shake_rect(self)
+		player_data.hp += val
+		if player_data.hp>player_data.hpm: player_data.hp = player_data.hpm
+		update_ui()

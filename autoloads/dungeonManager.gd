@@ -2,6 +2,7 @@ extends Node
 
 var dungeon_level = 1
 var room_num = 0
+var room_max = 3
 
 func get_defiances_by_level():
 	print("get_defiances_by_level")
@@ -12,11 +13,13 @@ func get_defiances_by_level():
 	return result
 
 func goto_next_room():
-	var is_first_creation = (dungeon_level==0)
+	var is_first_creation = (room_num==0)
 	room_num += 1
-	if room_num>3+dungeon_level: 
+	if room_num>room_max: 
 		dungeon_level += 1
 		room_num = 1
+		room_max = 2+dungeon_level
+	get_node("/root/Game/CanvasLayerUI/lb_level").text = "Dungeon\nLevel "+str(dungeon_level)+"\nSala "+str(room_num)+"/"+str(room_max)
 	print("DUNGEON LEVEL ",dungeon_level)
 	var CONTAINER = get_node("/root/Game/RoomContainer")
 	var OLD_ROOM = get_node("/root/Game/RoomContainer/Room")

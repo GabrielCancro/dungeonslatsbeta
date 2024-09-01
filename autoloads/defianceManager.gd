@@ -79,7 +79,7 @@ func on_turn_defiance_trap(defiance_data):
 	emit_signal("end_defiance_effect")
 
 func _on_destroyed_defiance():
-	yield(get_tree().create_timer(.7),"timeout")
+	yield(get_tree().create_timer(1),"timeout")
 	emit_signal("destroyed_defiance")
 
 #	var metod_name = "resolve_"+defiance_data.type

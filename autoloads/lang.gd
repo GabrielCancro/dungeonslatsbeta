@@ -10,6 +10,7 @@ var texts = {
 	
 	"it_desc_small_sword_es":"Espada Corta: Restaura 1xESPADA que este agotada.",
 	"it_desc_large_sword_es":"Espada Larga: Restaura 2xESPADA que este agotada.",
+	"small_hp_potion_es":"Pocion De Salud Menor: Restaura 2 puntos de golpe.",
 	
 	"slat_SW_es": "ESPADA: Estos slats te permitirán superar desafios de combate y fuerza bruta.",
 	"slat_GR_es": "MECANISMO: Estos slats te permitirán superar desafios mecanicos como abrir cerraduras y desactivar trampas.",
