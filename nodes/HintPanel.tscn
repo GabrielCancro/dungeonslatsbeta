@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/AbyssinicaSIL-Regular.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://assets/slats/SW.png" type="Texture" id=2]
+[ext_resource path="res://nodes/ReqSlatBar.gd" type="Script" id=2]
 [ext_resource path="res://nodes/HintPanel.gd" type="Script" id=3]
+[ext_resource path="res://nodes/ReqSlatBar.tscn" type="PackedScene" id=4]
 
 [sub_resource type="DynamicFont" id=2]
 outline_color = Color( 0.168627, 0.168627, 0.168627, 1 )
@@ -51,71 +52,5 @@ bbcode_text = "qweqwe[img=15]res://assets/slats/BT.png[/img] adasfqweqwe[img=15]
 text = "qweqwe adasfqweqweqweqwe adasfqweqwe/BT.png adasfqweqweqweqwe adasfqweqweqweqwe ada"
 scroll_active = false
 
-[node name="HBox" type="HBoxContainer" parent="."]
-margin_top = 50.0
-margin_right = 137.0
-margin_bottom = 75.0
-custom_constants/separation = -9
-
-[node name="R1" type="TextureRect" parent="HBox"]
-margin_right = 25.0
-margin_bottom = 25.0
-rect_min_size = Vector2( 25, 25 )
-texture = ExtResource( 2 )
-expand = true
-
-[node name="R2" type="TextureRect" parent="HBox"]
-margin_left = 16.0
-margin_right = 41.0
-margin_bottom = 25.0
-rect_min_size = Vector2( 25, 25 )
-texture = ExtResource( 2 )
-expand = true
-
-[node name="R3" type="TextureRect" parent="HBox"]
-margin_left = 32.0
-margin_right = 57.0
-margin_bottom = 25.0
-rect_min_size = Vector2( 25, 25 )
-texture = ExtResource( 2 )
-expand = true
-
-[node name="R4" type="TextureRect" parent="HBox"]
-margin_left = 48.0
-margin_right = 73.0
-margin_bottom = 25.0
-rect_min_size = Vector2( 25, 25 )
-texture = ExtResource( 2 )
-expand = true
-
-[node name="R5" type="TextureRect" parent="HBox"]
-margin_left = 64.0
-margin_right = 89.0
-margin_bottom = 25.0
-rect_min_size = Vector2( 25, 25 )
-texture = ExtResource( 2 )
-expand = true
-
-[node name="R6" type="TextureRect" parent="HBox"]
-margin_left = 80.0
-margin_right = 105.0
-margin_bottom = 25.0
-rect_min_size = Vector2( 25, 25 )
-texture = ExtResource( 2 )
-expand = true
-
-[node name="R7" type="TextureRect" parent="HBox"]
-margin_left = 96.0
-margin_right = 121.0
-margin_bottom = 25.0
-rect_min_size = Vector2( 25, 25 )
-texture = ExtResource( 2 )
-expand = true
-
-[node name="R8" type="TextureRect" parent="HBox"]
-margin_left = 112.0
-margin_right = 137.0
-margin_bottom = 25.0
-rect_min_size = Vector2( 25, 25 )
-texture = ExtResource( 2 )
-expand = true
+[node name="ReqSlatBar" parent="." instance=ExtResource( 4 )]
+script = ExtResource( 2 )

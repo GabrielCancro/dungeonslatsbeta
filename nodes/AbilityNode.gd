@@ -12,6 +12,7 @@ func set_data(_ab_data):
 	PlayerManager.connect("on_change_player_slats",self,"update_ability_able")
 	EffectManager.add_hint($Button,"ab_desc_"+ab_data.name,ab_data.req)
 	EffectManager.add_hint($ColorAble,"ab_desc_"+ab_data.name,ab_data.req)
+	$ReqSlatBar.set_data(ab_data.req)
 	update_ability_able()
 
 func update_ability_able():
