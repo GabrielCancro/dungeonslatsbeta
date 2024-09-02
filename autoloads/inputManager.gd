@@ -23,6 +23,7 @@ func _process(delta):
 		set_process(false)
 
 func disable_input(_time):
+	if !is_instance_valid(InputStopperNode): return
 	if time<_time: time = _time
 	if time>0:
 		InputStopperNode.visible = true

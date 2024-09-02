@@ -12,8 +12,7 @@ func get_defiances_by_level():
 	for i in range( floor(dungeon_level/3) ): result.append( DefianceManager.get_random_defiance("chest") )
 	return result
 
-func goto_next_room():
-	var is_first_creation = (room_num==0)
+func goto_next_room(is_first_creation=false):
 	room_num += 1
 	if room_num>room_max: 
 		dungeon_level += 1

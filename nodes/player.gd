@@ -3,6 +3,7 @@ extends Control
 export var index = 0
 var player_data
 var is_dead = false
+var ALL_SLATS_ACTIVES
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -34,6 +35,7 @@ func create_slats():
 			var snode = preload("res://nodes/Slat.tscn").instance()
 			snode.set_slat(sk)
 			$slats.add_child(snode)
+			if ALL_SLATS_ACTIVES: snode.set_valid(true)
 	order_slats()
 
 func order_slats():

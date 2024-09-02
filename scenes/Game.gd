@@ -5,7 +5,8 @@ func _ready():
 	EffectManager._initialize_effector(self)
 	InputManager._initialize_input_manager($CanvasLayerUI/InputStopper)
 	$CanvasLayerUI/BtnEndTurn.connect("button_down",self,"end_turn")
-	DungeonManager.goto_next_room()
+	$CanvasLayerUI/BtnLevelUp.connect("button_down",self,"level_up")
+	DungeonManager.goto_next_room(true)
 	$CanvasLayerUI/InputStopper/AnimationPlayer.play("idle")
 #	for room_name in MapGenerator.rooms:
 #		var room_data = MapGenerator.rooms[room_name]
@@ -52,7 +53,10 @@ func end_turn():
 	InputManager.disable_input(3)
 	yield(get_tree().create_timer(1.5),"timeout")
 	for p in PlayerManager.players: p.node_ref.create_slats()
-	
+
+func level_up():
+	get_tree().change_scene("res://scenes/LevelUp.tscn")
+
 #	for def in MapManager.current_room.data.tokens:
 #		if !card: continue
 #		CardManager.run_action(card)

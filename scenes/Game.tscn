@@ -108,6 +108,13 @@ margin_right = 790.0
 margin_bottom = 443.0
 text = "END TURN"
 
+[node name="BtnLevelUp" type="Button" parent="CanvasLayerUI"]
+margin_left = 7.0
+margin_top = 8.0
+margin_right = 88.0
+margin_bottom = 32.0
+text = "LEVEL UP"
+
 [node name="DamageColor" type="ColorRect" parent="CanvasLayerUI"]
 visible = false
 anchor_right = 1.0
