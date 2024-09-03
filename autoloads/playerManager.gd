@@ -16,6 +16,7 @@ func init_players_data(amount):
 		players.append({
 			"index":i,
 			"retrait":i+1,
+			"class":"none",
 			"hp":6,"hpm":6,
 			"items":[],
 			"abilities":[],
@@ -24,17 +25,21 @@ func init_players_data(amount):
 		})
 		AbilityManager.add_ability_to_player("direct_attack",i)
 		AbilityManager.add_ability_to_player("unlock",i)
-		AbilityManager.add_ability_to_player("berserk",i)
+
+	players[0].class = "warrior"
 	players[0].slats.SW += 2
 	players[0].hp += 3
 	players[0].hpm += 3
 	AbilityManager.add_ability_to_player("power_attack",0)
 	
+	players[1].class = "thief"
 	players[1].slats.EY += 1
 	players[1].slats.BT += 2
 	players[1].slats.GR += 3
 	players[1].hp += 1
 	players[1].hpm += 1
+	
+	players[2].class = "wizard"
 	players[2].slats.GR += 1
 	players[2].slats.EY += 2
 	players[2].slats.SC += 4

@@ -3,8 +3,8 @@ extends Node
 var lang = "es"
 
 var texts = {
-	"ab_desc_direct_attack_es": "Ataque Directo: Consume 2xESPADA para dañar 1xVIDA a un enemigo.",
-	"ab_desc_power_attack_es": "Ataque Poderoso: Consume 3xESPADA para dañar 2xVIDA a un enemigo.",
+	"ab_desc_direct_attack_es": "Ataque Directo: Consume 2xESPADA para causar 1xDAÑO a un enemigo.",
+	"ab_desc_power_attack_es": "Ataque Poderoso: Consume 3xESPADA para causar 2xDAÑO a un enemigo.",
 	"ab_desc_unlock_es": "Destrabar Mecanismo: Consume 2xMANO para resolver 1xENGRANAJE de un mecanismo.",
 	"ab_desc_berserk_es": "Berserker: Consume 1xVIDA para relanzar las ESPADAS INACTIVAS que tengas.",
 	

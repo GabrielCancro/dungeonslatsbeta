@@ -3,17 +3,16 @@ extends Node
 var current_ability_node
 signal on_select_ability(adata)
 var ABILITIES = {
-	"direct_attack":{"ico":0, "target":["enemy"], "req":{"SW":2,"EN":1}},
-	"unlock":{"ico":1, "target":["trap","chest"], "req":{"GR":2,"EN":1}},
-	"power_attack":{"ico":2, "target":["enemy"], "req":{"SW":3,"EN":1}},
-	"berserk":{"ico":4, "target":["self"], "req":{"EN":1}},
-	"fast_attack":{"ico":4, "target":["self"], "req":{"EN":1}},
+	"direct_attack":{"ico":0, "target":["enemy"], "classes":["all"], "req":{"SW":2,"EN":1}},
+	"unlock":{"ico":1, "target":["trap","chest"], "classes":["all"], "req":{"GR":2,"EN":1}},
+	"power_attack":{"ico":2, "target":["enemy"], "classes":["all"], "req":{"SW":3,"EN":1}},
+	"berserk":{"ico":4, "target":["self"], "classes":["warrior"], "req":{"EN":1}},
+	"fast_attack":{"ico":4, "target":["self"], "classes":["all"], "req":{"EN":1}},
 }
 
 func get_ability(code_ab):
 	var ab = ABILITIES[code_ab].duplicate()
 	ab["name"] = code_ab
-	if "max_uses" in ab: ab["uses"] = ab["max_uses"]
 	return ab
 
 func add_ability_to_player(code_ab,index=PlayerManager.current_player_index):
