@@ -15,6 +15,7 @@ func set_data(_ab_code):
 		$Label.text = Lang.get_text("ab_desc_"+ab_code).split(":")[0]
 		$Sprite.frame = AbilityManager.ABILITIES[ab_code].ico
 		EffectManager.add_hint($Button,"ab_desc_"+ab_code)
+		EffectManager.add_over_fx($Button,"rect")
 
 func on_click_button():
 	emit_signal("on_click",ab_code)

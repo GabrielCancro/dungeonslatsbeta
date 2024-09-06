@@ -103,6 +103,21 @@ func on_hint_enter_area(node,code,val,req=null):
 		hint_current_node = node
 		GAME.get_node("CanvasLayerUI/HintPanel").hide_hint()
 
+func add_over_fx(node,fx_type="alpha"):
+	node.connect("mouse_entered",self,"_on_over_fx",[node,fx_type,true])
+	node.connect("mouse_exited",self,"_on_over_fx",[node,fx_type,false])
+	node.connect("tree_exited",self,"_on_over_fx",[node,fx_type,false])
+
+func _on_over_fx(node,fx_type,val):
+	if fx_type=="alpha":
+		print("alpha FX")
+		if val: node.modulate.a = 2
+		else: node.modulate.a = 1
+	elif fx_type=="rect":
+		var OverFx = GAME.get_node("CanvasLayerUI/OverFx")
+		if val: OverFx.set_over_node(node)
+		else: OverFx.set_over_node(null)
+
 func show_float_text(code):
 	var node = preload("res://nodes/FloatText.tscn").instance()
 	node.set_data(Lang.get_text(code))

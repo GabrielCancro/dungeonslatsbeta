@@ -3,11 +3,11 @@ extends Node
 var current_ability_node
 signal on_select_ability(adata)
 var ABILITIES = {
-	"direct_attack":{"ico":0, "target":["enemy"], "classes":["all"], "req":{"SW":2,"EN":1}},
-	"unlock":{"ico":1, "target":["trap","chest"], "classes":["all"], "req":{"GR":2,"EN":1}},
-	"power_attack":{"ico":2, "target":["enemy"], "classes":["all"], "req":{"SW":3,"EN":1}},
-	"berserk":{"ico":4, "target":["self"], "classes":["warrior"], "req":{"EN":1}},
-	"fast_attack":{"ico":4, "target":["self"], "classes":["all"], "req":{"EN":1}},
+	"direct_attack":{"ico":0, "target":["enemy"], "upg_req":null, "req":{"SW":2,"EN":1}},
+	"unlock":{"ico":1, "target":["trap","chest"], "upg_req":null, "req":{"GR":2,"EN":1}},
+	"power_attack":{"ico":2, "target":["enemy"], "upg_req":{"SW":3}, "req":{"SW":3,"EN":1}},
+	"berserk":{"ico":4, "target":["self"], "upg_req":{"SW":3}, "req":{"EN":1}},
+	"fast_attack":{"ico":5, "target":["enemy"], "upg_req":{"BT":2}, "req":{"SW":1,"BT":1,"EN":1}},
 }
 
 func get_ability(code_ab):
@@ -62,6 +62,10 @@ func ac_unlock_trap(pdata, adata, ddata):
 
 func ac_unlock_chest(pdata, adata, ddata): 
 	ac_unlock_trap(pdata, adata, ddata)
+
+func ac_fast_attack_enemy(pdata, adata, ddata):
+	ddata.node_ref.reduce_defiance(1)
+	EffectManager.shake(ddata.node_ref)
 
 func ac_self_berserk(pdata, adata):
 	if pdata.hp>1:

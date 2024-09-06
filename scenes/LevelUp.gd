@@ -16,17 +16,15 @@ func _ready():
 
 func set_all_abilities(player_id):
 	var abs_arr = get_abailable_abilities_array(player_id)
-	for btn in get_node("UI"+str(player_id)+"/VBox").get_children():
+	for btn in get_node("UI"+str(player_id)+"/VBoxAbs").get_children():
 		if btn.get_index()<abs_arr.size(): 
 			btn.set_data( abs_arr[btn.get_index()] )
 			btn.connect("on_click",self,"on_select_ability",[btn,player_id])
 		else: btn.set_data(null)
-	for sbtn in get_node("UI"+str(player_id)+"/HBox").get_children():
+	for sbtn in get_node("UI"+str(player_id)+"/VBoxSlats").get_children():
 		(sbtn as Button).connect("button_down",self,"on_select_slat",[sbtn,player_id])
 		EffectManager.add_hint(sbtn,"upg_slat_"+sbtn.name)
-	var hpBtn = get_node("UI"+str(player_id)+"/HP")
-	hpBtn.connect("button_down",self,"on_select_hp",[player_id])
-	EffectManager.add_hint(hpBtn,"upg_slat_"+hpBtn.name)
+		EffectManager.add_over_fx(sbtn,"rect")
 
 func get_abailable_abilities_array(player_id):
 	var array = AbilityManager.ABILITIES.keys()
@@ -54,11 +52,11 @@ func on_select_ability(ab_code,btn,player_id):
 	get_node("UI"+str(player_id)).visible = false
 
 func on_select_slat(btn, player_id):
-	PlayerManager.players[player_id-1].slats[btn.name] += 1
-	get_node("Player"+str(player_id)).create_slats()
+	if(btn.name=="HP"):
+		PlayerManager.players[player_id-1].slats[btn.name] += 1
+		get_node("Player"+str(player_id)).create_slats()
+	else:
+		PlayerManager.players[player_id-1].hpm += 2
+		get_node("Player"+str(player_id)).heal(2)
 	get_node("UI"+str(player_id)).visible = false
 
-func on_select_hp(player_id):
-	PlayerManager.players[player_id-1].hpm += 2
-	get_node("Player"+str(player_id)).heal(2)
-	get_node("UI"+str(player_id)).visible = false

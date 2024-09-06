@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scenes/Game.gd" type="Script" id=1]
 [ext_resource path="res://nodes/Room.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://nodes/ItemsInFloor.tscn" type="PackedScene" id=7]
 [ext_resource path="res://nodes/HintPanel.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/sandclock.png" type="Texture" id=9]
+[ext_resource path="res://nodes/OverFx.tscn" type="PackedScene" id=10]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 3 )
@@ -212,3 +213,6 @@ text = "DUNGEON
 LEVEL 1
 SALA 1/10"
 align = 2
+
+[node name="OverFx" parent="CanvasLayerUI" instance=ExtResource( 10 )]
+visible = true

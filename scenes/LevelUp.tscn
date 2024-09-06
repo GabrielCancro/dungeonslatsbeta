@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://nodes/UpgradeButton.tscn" type="PackedScene" id=1]
 [ext_resource path="res://shaders/cellular3d.tres" type="Shader" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://assets/slats/SC.png" type="Texture" id=10]
 [ext_resource path="res://assets/AbyssinicaSIL-Regular.ttf" type="DynamicFontData" id=11]
 [ext_resource path="res://assets/bbimg/hp.png" type="Texture" id=12]
+[ext_resource path="res://nodes/OverFx.tscn" type="PackedScene" id=13]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 2 )
@@ -51,14 +52,16 @@ color = Color( 0.0862745, 0.0862745, 0.0862745, 1 )
 margin_top = 15.0
 margin_bottom = 70.0
 
+[node name="OverFx" parent="CanvasLayerUI" instance=ExtResource( 13 )]
+
 [node name="Player1" parent="." instance=ExtResource( 4 )]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -242.0
+margin_left = -220.0
 margin_top = 154.0
-margin_right = -242.0
+margin_right = -220.0
 margin_bottom = 154.0
 
 [node name="Player2" parent="." instance=ExtResource( 4 )]
@@ -77,9 +80,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 241.0
+margin_left = 220.0
 margin_top = 154.0
-margin_right = 241.0
+margin_right = 220.0
 margin_bottom = 154.0
 index = 2
 
@@ -88,379 +91,501 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -345.5
-margin_top = -136.0
-margin_right = -134.5
-margin_bottom = 79.0
-color = Color( 0.34902, 0.34902, 0.34902, 0.784314 )
+margin_left = -353.0
+margin_top = -131.0
+margin_right = -126.0
+margin_bottom = 96.0
+color = Color( 0.337255, 0.337255, 0.337255, 0.784314 )
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="VBox" type="VBoxContainer" parent="UI1"]
-anchor_left = 0.5
+[node name="VBoxSlats" type="VBoxContainer" parent="UI1"]
 anchor_top = 0.5
-anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -100.0
-margin_top = -103.0
-margin_right = 100.0
-margin_bottom = 109.0
-
-[node name="UpgradeButton" parent="UI1/VBox" instance=ExtResource( 1 )]
-
-[node name="UpgradeButton2" parent="UI1/VBox" instance=ExtResource( 1 )]
-margin_top = 54.0
-margin_bottom = 104.0
-
-[node name="UpgradeButton3" parent="UI1/VBox" instance=ExtResource( 1 )]
-margin_top = 108.0
-margin_bottom = 158.0
-
-[node name="HBox" type="HBoxContainer" parent="UI1"]
-margin_left = 3.0
-margin_top = 169.0
-margin_right = 210.0
-margin_bottom = 209.0
-custom_constants/separation = 1
+margin_left = 6.0
+margin_top = -108.0
+margin_right = 46.0
+margin_bottom = 108.0
+custom_constants/separation = 4
 alignment = 1
 
-[node name="SW" type="Button" parent="UI1/HBox"]
-margin_left = 1.0
-margin_right = 41.0
+[node name="SW" type="Button" parent="UI1/VBoxSlats"]
+margin_right = 40.0
 margin_bottom = 40.0
-rect_min_size = Vector2( 40, 40 )
+rect_min_size = Vector2( 35, 40 )
+focus_mode = 0
+flat = true
 
-[node name="TextureRect" type="TextureRect" parent="UI1/HBox/SW"]
+[node name="ColorRect" type="ColorRect" parent="UI1/VBoxSlats/SW"]
+margin_right = 40.0
+margin_bottom = 40.0
+color = Color( 0.12549, 0.12549, 0.12549, 1 )
+
+[node name="TextureRect" type="TextureRect" parent="UI1/VBoxSlats/SW"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 6 )
 expand = true
 
-[node name="GR" type="Button" parent="UI1/HBox"]
-margin_left = 42.0
-margin_right = 82.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 40, 40 )
+[node name="GR" type="Button" parent="UI1/VBoxSlats"]
+margin_top = 44.0
+margin_right = 40.0
+margin_bottom = 84.0
+rect_min_size = Vector2( 35, 40 )
+focus_mode = 0
+flat = true
 
-[node name="TextureRect" type="TextureRect" parent="UI1/HBox/GR"]
+[node name="ColorRect" type="ColorRect" parent="UI1/VBoxSlats/GR"]
+margin_right = 40.0
+margin_bottom = 40.0
+color = Color( 0.12549, 0.12549, 0.12549, 1 )
+
+[node name="TextureRect" type="TextureRect" parent="UI1/VBoxSlats/GR"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 8 )
 expand = true
 
-[node name="BT" type="Button" parent="UI1/HBox"]
-margin_left = 83.0
-margin_right = 123.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 40, 40 )
+[node name="BT" type="Button" parent="UI1/VBoxSlats"]
+margin_top = 88.0
+margin_right = 40.0
+margin_bottom = 128.0
+rect_min_size = Vector2( 35, 40 )
+focus_mode = 0
+flat = true
 
-[node name="TextureRect" type="TextureRect" parent="UI1/HBox/BT"]
+[node name="ColorRect" type="ColorRect" parent="UI1/VBoxSlats/BT"]
+margin_right = 40.0
+margin_bottom = 40.0
+color = Color( 0.12549, 0.12549, 0.12549, 1 )
+
+[node name="TextureRect" type="TextureRect" parent="UI1/VBoxSlats/BT"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 7 )
 expand = true
 
-[node name="EY" type="Button" parent="UI1/HBox"]
-margin_left = 124.0
-margin_right = 164.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 40, 40 )
+[node name="EY" type="Button" parent="UI1/VBoxSlats"]
+visible = false
+margin_top = 132.0
+margin_right = 40.0
+margin_bottom = 172.0
+rect_min_size = Vector2( 35, 40 )
+focus_mode = 0
+flat = true
 
-[node name="TextureRect" type="TextureRect" parent="UI1/HBox/EY"]
+[node name="ColorRect" type="ColorRect" parent="UI1/VBoxSlats/EY"]
+margin_right = 40.0
+margin_bottom = 40.0
+color = Color( 0.12549, 0.12549, 0.12549, 1 )
+
+[node name="TextureRect" type="TextureRect" parent="UI1/VBoxSlats/EY"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 9 )
 expand = true
 
-[node name="SC" type="Button" parent="UI1/HBox"]
-margin_left = 165.0
-margin_right = 205.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 40, 40 )
+[node name="SC" type="Button" parent="UI1/VBoxSlats"]
+margin_top = 132.0
+margin_right = 40.0
+margin_bottom = 172.0
+rect_min_size = Vector2( 35, 40 )
+focus_mode = 0
+flat = true
 
-[node name="TextureRect" type="TextureRect" parent="UI1/HBox/SC"]
+[node name="ColorRect" type="ColorRect" parent="UI1/VBoxSlats/SC"]
+margin_right = 40.0
+margin_bottom = 40.0
+color = Color( 0.12549, 0.12549, 0.12549, 1 )
+
+[node name="TextureRect" type="TextureRect" parent="UI1/VBoxSlats/SC"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 10 )
 expand = true
 
-[node name="HP" type="Button" parent="UI1"]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -105.0
-margin_top = 1.0
-margin_right = -55.0
-margin_bottom = 51.0
-rect_min_size = Vector2( 40, 40 )
+[node name="HP" type="Button" parent="UI1/VBoxSlats"]
+margin_top = 176.0
+margin_right = 40.0
+margin_bottom = 216.0
+rect_min_size = Vector2( 35, 40 )
+focus_mode = 0
+flat = true
 
-[node name="TextureRect" type="TextureRect" parent="UI1/HP"]
+[node name="ColorRect" type="ColorRect" parent="UI1/VBoxSlats/HP"]
+margin_right = 40.0
+margin_bottom = 40.0
+color = Color( 0.12549, 0.12549, 0.12549, 1 )
+
+[node name="TextureRect" type="TextureRect" parent="UI1/VBoxSlats/HP"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 12 )
 expand = true
 
-[node name="Label" type="Label" parent="UI1/HP"]
+[node name="Label" type="Label" parent="UI1/VBoxSlats/HP"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_fonts/font = SubResource( 2 )
 text = "+2"
 align = 1
 valign = 1
+
+[node name="VBoxAbs" type="VBoxContainer" parent="UI1"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -175.0
+margin_top = -106.0
+margin_right = -5.0
+margin_bottom = 106.0
+
+[node name="UpgradeButton" parent="UI1/VBoxAbs" instance=ExtResource( 1 )]
+rect_min_size = Vector2( 160, 50 )
+
+[node name="UpgradeButton2" parent="UI1/VBoxAbs" instance=ExtResource( 1 )]
+margin_top = 54.0
+margin_bottom = 104.0
+
+[node name="UpgradeButton3" parent="UI1/VBoxAbs" instance=ExtResource( 1 )]
+margin_top = 108.0
+margin_bottom = 158.0
+
+[node name="UpgradeButton4" parent="UI1/VBoxAbs" instance=ExtResource( 1 )]
+margin_top = 162.0
+margin_bottom = 212.0
 
 [node name="UI2" type="ColorRect" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -105.5
-margin_top = -136.0
-margin_right = 105.5
-margin_bottom = 79.0
-color = Color( 0.34902, 0.34902, 0.34902, 0.784314 )
+margin_left = -114.0
+margin_top = -131.0
+margin_right = 113.0
+margin_bottom = 96.0
+color = Color( 0.337255, 0.337255, 0.337255, 0.784314 )
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="VBox" type="VBoxContainer" parent="UI2"]
-anchor_left = 0.5
+[node name="VBoxSlats" type="VBoxContainer" parent="UI2"]
 anchor_top = 0.5
-anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -100.0
-margin_top = -102.0
-margin_right = 100.0
-margin_bottom = 110.0
-
-[node name="UpgradeButton" parent="UI2/VBox" instance=ExtResource( 1 )]
-
-[node name="UpgradeButton2" parent="UI2/VBox" instance=ExtResource( 1 )]
-margin_top = 54.0
-margin_bottom = 104.0
-
-[node name="UpgradeButton3" parent="UI2/VBox" instance=ExtResource( 1 )]
-margin_top = 108.0
-margin_bottom = 158.0
-
-[node name="HBox" type="HBoxContainer" parent="UI2"]
-margin_top = 169.0
-margin_right = 211.0
-margin_bottom = 209.0
-custom_constants/separation = 1
+margin_left = 6.0
+margin_top = -108.0
+margin_right = 46.0
+margin_bottom = 108.0
+custom_constants/separation = 4
 alignment = 1
 
-[node name="SW" type="Button" parent="UI2/HBox"]
-margin_left = 3.0
-margin_right = 43.0
+[node name="SW" type="Button" parent="UI2/VBoxSlats"]
+margin_right = 40.0
 margin_bottom = 40.0
-rect_min_size = Vector2( 40, 40 )
+rect_min_size = Vector2( 35, 40 )
+flat = true
 
-[node name="TextureRect" type="TextureRect" parent="UI2/HBox/SW"]
+[node name="ColorRect" type="ColorRect" parent="UI2/VBoxSlats/SW"]
+margin_right = 40.0
+margin_bottom = 40.0
+color = Color( 0.12549, 0.12549, 0.12549, 1 )
+
+[node name="TextureRect" type="TextureRect" parent="UI2/VBoxSlats/SW"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 6 )
 expand = true
 
-[node name="GR" type="Button" parent="UI2/HBox"]
-margin_left = 44.0
-margin_right = 84.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 40, 40 )
+[node name="GR" type="Button" parent="UI2/VBoxSlats"]
+margin_top = 44.0
+margin_right = 40.0
+margin_bottom = 84.0
+rect_min_size = Vector2( 35, 40 )
+flat = true
 
-[node name="TextureRect" type="TextureRect" parent="UI2/HBox/GR"]
+[node name="ColorRect" type="ColorRect" parent="UI2/VBoxSlats/GR"]
+margin_right = 40.0
+margin_bottom = 40.0
+color = Color( 0.12549, 0.12549, 0.12549, 1 )
+
+[node name="TextureRect" type="TextureRect" parent="UI2/VBoxSlats/GR"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 8 )
 expand = true
 
-[node name="BT" type="Button" parent="UI2/HBox"]
-margin_left = 85.0
-margin_right = 125.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 40, 40 )
+[node name="BT" type="Button" parent="UI2/VBoxSlats"]
+margin_top = 88.0
+margin_right = 40.0
+margin_bottom = 128.0
+rect_min_size = Vector2( 35, 40 )
+flat = true
 
-[node name="TextureRect" type="TextureRect" parent="UI2/HBox/BT"]
+[node name="ColorRect" type="ColorRect" parent="UI2/VBoxSlats/BT"]
+margin_right = 40.0
+margin_bottom = 40.0
+color = Color( 0.12549, 0.12549, 0.12549, 1 )
+
+[node name="TextureRect" type="TextureRect" parent="UI2/VBoxSlats/BT"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 7 )
 expand = true
 
-[node name="EY" type="Button" parent="UI2/HBox"]
-margin_left = 126.0
-margin_right = 166.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 40, 40 )
+[node name="EY" type="Button" parent="UI2/VBoxSlats"]
+visible = false
+margin_top = 132.0
+margin_right = 40.0
+margin_bottom = 172.0
+rect_min_size = Vector2( 35, 40 )
+flat = true
 
-[node name="TextureRect" type="TextureRect" parent="UI2/HBox/EY"]
+[node name="ColorRect" type="ColorRect" parent="UI2/VBoxSlats/EY"]
+margin_right = 40.0
+margin_bottom = 40.0
+color = Color( 0.12549, 0.12549, 0.12549, 1 )
+
+[node name="TextureRect" type="TextureRect" parent="UI2/VBoxSlats/EY"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 9 )
 expand = true
 
-[node name="SC" type="Button" parent="UI2/HBox"]
-margin_left = 167.0
-margin_right = 207.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 40, 40 )
+[node name="SC" type="Button" parent="UI2/VBoxSlats"]
+margin_top = 132.0
+margin_right = 40.0
+margin_bottom = 172.0
+rect_min_size = Vector2( 35, 40 )
+flat = true
 
-[node name="TextureRect" type="TextureRect" parent="UI2/HBox/SC"]
+[node name="ColorRect" type="ColorRect" parent="UI2/VBoxSlats/SC"]
+margin_right = 40.0
+margin_bottom = 40.0
+color = Color( 0.12549, 0.12549, 0.12549, 1 )
+
+[node name="TextureRect" type="TextureRect" parent="UI2/VBoxSlats/SC"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 10 )
 expand = true
 
-[node name="HP" type="Button" parent="UI2"]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -105.0
-margin_top = 1.0
-margin_right = -55.0
-margin_bottom = 51.0
-rect_min_size = Vector2( 40, 40 )
+[node name="HP" type="Button" parent="UI2/VBoxSlats"]
+margin_top = 176.0
+margin_right = 40.0
+margin_bottom = 216.0
+rect_min_size = Vector2( 35, 40 )
+flat = true
 
-[node name="TextureRect" type="TextureRect" parent="UI2/HP"]
+[node name="ColorRect" type="ColorRect" parent="UI2/VBoxSlats/HP"]
+margin_right = 40.0
+margin_bottom = 40.0
+color = Color( 0.12549, 0.12549, 0.12549, 1 )
+
+[node name="TextureRect" type="TextureRect" parent="UI2/VBoxSlats/HP"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 12 )
 expand = true
 
-[node name="Label" type="Label" parent="UI2/HP"]
+[node name="Label" type="Label" parent="UI2/VBoxSlats/HP"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_fonts/font = SubResource( 2 )
 text = "+2"
 align = 1
 valign = 1
+
+[node name="VBoxAbs" type="VBoxContainer" parent="UI2"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -175.0
+margin_top = -106.0
+margin_right = -5.0
+margin_bottom = 106.0
+
+[node name="UpgradeButton" parent="UI2/VBoxAbs" instance=ExtResource( 1 )]
+rect_min_size = Vector2( 160, 50 )
+
+[node name="UpgradeButton2" parent="UI2/VBoxAbs" instance=ExtResource( 1 )]
+margin_top = 54.0
+margin_bottom = 104.0
+
+[node name="UpgradeButton3" parent="UI2/VBoxAbs" instance=ExtResource( 1 )]
+margin_top = 108.0
+margin_bottom = 158.0
+
+[node name="UpgradeButton4" parent="UI2/VBoxAbs" instance=ExtResource( 1 )]
+margin_top = 162.0
+margin_bottom = 212.0
 
 [node name="UI3" type="ColorRect" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 134.5
-margin_top = -136.0
-margin_right = 345.5
-margin_bottom = 79.0
-color = Color( 0.34902, 0.34902, 0.34902, 0.784314 )
+margin_left = 127.0
+margin_top = -131.0
+margin_right = 354.0
+margin_bottom = 96.0
+color = Color( 0.337255, 0.337255, 0.337255, 0.784314 )
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="VBox" type="VBoxContainer" parent="UI3"]
-anchor_left = 0.5
+[node name="VBoxSlats" type="VBoxContainer" parent="UI3"]
 anchor_top = 0.5
-anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -100.0
-margin_top = -101.0
-margin_right = 100.0
-margin_bottom = 111.0
-
-[node name="UpgradeButton" parent="UI3/VBox" instance=ExtResource( 1 )]
-
-[node name="UpgradeButton2" parent="UI3/VBox" instance=ExtResource( 1 )]
-margin_top = 54.0
-margin_bottom = 104.0
-
-[node name="UpgradeButton3" parent="UI3/VBox" instance=ExtResource( 1 )]
-margin_top = 108.0
-margin_bottom = 158.0
-
-[node name="HBox" type="HBoxContainer" parent="UI3"]
-margin_top = 169.0
-margin_right = 211.0
-margin_bottom = 209.0
-custom_constants/separation = 1
+margin_left = 6.0
+margin_top = -108.0
+margin_right = 46.0
+margin_bottom = 108.0
+custom_constants/separation = 4
 alignment = 1
 
-[node name="SW" type="Button" parent="UI3/HBox"]
-margin_left = 3.0
-margin_right = 43.0
+[node name="SW" type="Button" parent="UI3/VBoxSlats"]
+margin_right = 40.0
 margin_bottom = 40.0
-rect_min_size = Vector2( 40, 40 )
+rect_min_size = Vector2( 35, 40 )
+flat = true
 
-[node name="TextureRect" type="TextureRect" parent="UI3/HBox/SW"]
+[node name="ColorRect" type="ColorRect" parent="UI3/VBoxSlats/SW"]
+margin_right = 40.0
+margin_bottom = 40.0
+color = Color( 0.12549, 0.12549, 0.12549, 1 )
+
+[node name="TextureRect" type="TextureRect" parent="UI3/VBoxSlats/SW"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 6 )
 expand = true
 
-[node name="GR" type="Button" parent="UI3/HBox"]
-margin_left = 44.0
-margin_right = 84.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 40, 40 )
+[node name="GR" type="Button" parent="UI3/VBoxSlats"]
+margin_top = 44.0
+margin_right = 40.0
+margin_bottom = 84.0
+rect_min_size = Vector2( 35, 40 )
+flat = true
 
-[node name="TextureRect" type="TextureRect" parent="UI3/HBox/GR"]
+[node name="ColorRect" type="ColorRect" parent="UI3/VBoxSlats/GR"]
+margin_right = 40.0
+margin_bottom = 40.0
+color = Color( 0.12549, 0.12549, 0.12549, 1 )
+
+[node name="TextureRect" type="TextureRect" parent="UI3/VBoxSlats/GR"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 8 )
 expand = true
 
-[node name="BT" type="Button" parent="UI3/HBox"]
-margin_left = 85.0
-margin_right = 125.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 40, 40 )
+[node name="BT" type="Button" parent="UI3/VBoxSlats"]
+margin_top = 88.0
+margin_right = 40.0
+margin_bottom = 128.0
+rect_min_size = Vector2( 35, 40 )
+flat = true
 
-[node name="TextureRect" type="TextureRect" parent="UI3/HBox/BT"]
+[node name="ColorRect" type="ColorRect" parent="UI3/VBoxSlats/BT"]
+margin_right = 40.0
+margin_bottom = 40.0
+color = Color( 0.12549, 0.12549, 0.12549, 1 )
+
+[node name="TextureRect" type="TextureRect" parent="UI3/VBoxSlats/BT"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 7 )
 expand = true
 
-[node name="EY" type="Button" parent="UI3/HBox"]
-margin_left = 126.0
-margin_right = 166.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 40, 40 )
+[node name="EY" type="Button" parent="UI3/VBoxSlats"]
+visible = false
+margin_top = 132.0
+margin_right = 40.0
+margin_bottom = 172.0
+rect_min_size = Vector2( 35, 40 )
+flat = true
 
-[node name="TextureRect" type="TextureRect" parent="UI3/HBox/EY"]
+[node name="ColorRect" type="ColorRect" parent="UI3/VBoxSlats/EY"]
+margin_right = 40.0
+margin_bottom = 40.0
+color = Color( 0.12549, 0.12549, 0.12549, 1 )
+
+[node name="TextureRect" type="TextureRect" parent="UI3/VBoxSlats/EY"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 9 )
 expand = true
 
-[node name="SC" type="Button" parent="UI3/HBox"]
-margin_left = 167.0
-margin_right = 207.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 40, 40 )
+[node name="SC" type="Button" parent="UI3/VBoxSlats"]
+margin_top = 132.0
+margin_right = 40.0
+margin_bottom = 172.0
+rect_min_size = Vector2( 35, 40 )
+flat = true
 
-[node name="TextureRect" type="TextureRect" parent="UI3/HBox/SC"]
+[node name="ColorRect" type="ColorRect" parent="UI3/VBoxSlats/SC"]
+margin_right = 40.0
+margin_bottom = 40.0
+color = Color( 0.12549, 0.12549, 0.12549, 1 )
+
+[node name="TextureRect" type="TextureRect" parent="UI3/VBoxSlats/SC"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 10 )
 expand = true
 
-[node name="HP" type="Button" parent="UI3"]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -105.0
-margin_top = 1.0
-margin_right = -55.0
-margin_bottom = 51.0
-rect_min_size = Vector2( 40, 40 )
+[node name="HP" type="Button" parent="UI3/VBoxSlats"]
+margin_top = 176.0
+margin_right = 40.0
+margin_bottom = 216.0
+rect_min_size = Vector2( 35, 40 )
+flat = true
 
-[node name="TextureRect" type="TextureRect" parent="UI3/HP"]
+[node name="ColorRect" type="ColorRect" parent="UI3/VBoxSlats/HP"]
+margin_right = 40.0
+margin_bottom = 40.0
+color = Color( 0.12549, 0.12549, 0.12549, 1 )
+
+[node name="TextureRect" type="TextureRect" parent="UI3/VBoxSlats/HP"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 12 )
 expand = true
 
-[node name="Label" type="Label" parent="UI3/HP"]
+[node name="Label" type="Label" parent="UI3/VBoxSlats/HP"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_fonts/font = SubResource( 2 )
 text = "+2"
 align = 1
 valign = 1
+
+[node name="VBoxAbs" type="VBoxContainer" parent="UI3"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -175.0
+margin_top = -106.0
+margin_right = -5.0
+margin_bottom = 106.0
+
+[node name="UpgradeButton" parent="UI3/VBoxAbs" instance=ExtResource( 1 )]
+rect_min_size = Vector2( 160, 50 )
+
+[node name="UpgradeButton2" parent="UI3/VBoxAbs" instance=ExtResource( 1 )]
+margin_top = 54.0
+margin_bottom = 104.0
+
+[node name="UpgradeButton3" parent="UI3/VBoxAbs" instance=ExtResource( 1 )]
+margin_top = 108.0
+margin_bottom = 158.0
+
+[node name="UpgradeButton4" parent="UI3/VBoxAbs" instance=ExtResource( 1 )]
+margin_top = 162.0
+margin_bottom = 212.0
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource( 1 )
