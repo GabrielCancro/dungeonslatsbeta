@@ -33,11 +33,16 @@ func get_abailable_abilities_array(player_id):
 	var i = 0
 	while i<array.size():
 		var ab_data = AbilityManager.get_ability(array[i])
-		if !ab_data.classes.has("all") && !ab_data.classes.has(pdata.class):
+		if ab_data.upg_req!=null && !have_slats(pdata.slats,ab_data.upg_req):
 			array.erase(ab_data.name)
 		else: i+=1
 	array.shuffle()
 	return array
+
+func have_slats(haveSlats,req):
+	for k in req.keys():
+		if haveSlats[k] < req[k]: return false
+	return true
 
 func check_player_have_ability(player_id,ab_code):
 	for ab in PlayerManager.players[player_id-1].abilities:
@@ -53,10 +58,10 @@ func on_select_ability(ab_code,btn,player_id):
 
 func on_select_slat(btn, player_id):
 	if(btn.name=="HP"):
-		PlayerManager.players[player_id-1].slats[btn.name] += 1
-		get_node("Player"+str(player_id)).create_slats()
-	else:
 		PlayerManager.players[player_id-1].hpm += 2
 		get_node("Player"+str(player_id)).heal(2)
+	else:
+		PlayerManager.players[player_id-1].slats[btn.name] += 1
+		get_node("Player"+str(player_id)).create_slats()
 	get_node("UI"+str(player_id)).visible = false
 
